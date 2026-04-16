@@ -1416,7 +1416,7 @@ const games = [
   img: "https://i.postimg.cc/dDMXXVX6/6adbf6c4931179098e19d6acbd4547bb.png"
 },
   {
-  name: "一起来飞车（官服套餐|真多人竞技）",
+  name: "一起来飞车（官服套餐|多人竞技）",
   price: "售价：388元10亿点卷+超多道具 | 588元=无限点券+贵族王爵MAX 级+巨多道具",
   register: "#",        // 注册地址
   pc: "#",              // 电脑下载
@@ -1608,9 +1608,9 @@ const games = [
   register: "#",        // 注册地址
   pc: "#",              // 电脑下载
   web: "#",             // 网页畅玩
-  android: "https://0.1zheyx.com/game/1002760/61108.html",
+  android: "https://0.1zheyx.com/game/1002760/61325.html",
   android2: "#",
-  ios: "https://0.1zheyx.com/game/1002760/61108.html",
+  ios: "https://0.1zheyx.com/game/1002760/61325.html",
   ios2: "#",
   superSign: "#",
   superBuy: "#",
@@ -1635,7 +1635,75 @@ const games = [
   active: "#",
   info: "PS:进游重新注册新账号，避免领取不到福利等问题，充值前先找客服核对角色信息！客服操作开通权限发后台操作",
   img: "https://i.postimg.cc/Y2bQ3CTk/a45fbf668297516d6da3d2ae05d03787.png"
-}
+},
+  {
+  name: "游戏名称",
+  price: "售价：XX元",
+  register: "#",        // 注册地址
+  pc: "#",              // 电脑下载
+  web: "#",             // 网页畅玩
+  android: "安卓链接",
+  android2: "#",
+  ios: "#",
+  ios2: "#",
+  superSign: "#",
+  superBuy: "#",
+  admin: "后台地址",
+  active: "#",
+  info: "说明",
+  img: "图片链接"
+},
+  {
+  name: "游戏名称",
+  price: "售价：XX元",
+  register: "#",        // 注册地址
+  pc: "#",              // 电脑下载
+  web: "#",             // 网页畅玩
+  android: "安卓链接",
+  android2: "#",
+  ios: "#",
+  ios2: "#",
+  superSign: "#",
+  superBuy: "#",
+  admin: "后台地址",
+  active: "#",
+  info: "说明",
+  img: "图片链接"
+},
+  {
+  name: "游戏名称",
+  price: "售价：XX元",
+  register: "#",        // 注册地址
+  pc: "#",              // 电脑下载
+  web: "#",             // 网页畅玩
+  android: "安卓链接",
+  android2: "#",
+  ios: "#",
+  ios2: "#",
+  superSign: "#",
+  superBuy: "#",
+  admin: "后台地址",
+  active: "#",
+  info: "说明",
+  img: "图片链接"
+},
+  {
+  name: "游戏名称",
+  price: "售价：XX元",
+  register: "#",        // 注册地址
+  pc: "#",              // 电脑下载
+  web: "#",             // 网页畅玩
+  android: "安卓链接",
+  android2: "#",
+  ios: "#",
+  ios2: "#",
+  superSign: "#",
+  superBuy: "#",
+  admin: "后台地址",
+  active: "#",
+  info: "说明",
+  img: "图片链接"
+},
 ];
 
 // 复制微信
@@ -1760,11 +1828,13 @@ games.forEach(g=>{
   }
 
   // 后台地址
+  if(g.active && g.active !== '#'){
   html += `
   <div class="btn-row">
     <button class="btn-download admin" onclick="window.open('${g.admin}','_blank')">后台地址</button>
     <button class="btn-copy" onclick="copyLink('${g.admin}')">复制</button>
   </div>`;
+  }
 
   // 激活后台
   if(g.active && g.active !== '#'){
