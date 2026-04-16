@@ -119,6 +119,10 @@ body{
 .btn-download.img{
   background:linear-gradient(90deg,#00c896,#00a878);
 }
+/* 超级签按钮样式 */
+.btn-download.supersign{
+  background:linear-gradient(90deg, #ff4d94, #ff3366);
+}
 .btn-copy{
   width:68px;
   padding:15px 0;
@@ -162,6 +166,7 @@ const games = [
     android2: "#",
     ios: "#",
     ios2: "",
+    superSign: "#", // 苹果超级签，不显示
     admin: "http://106.55.188.65:520/",
     info: "最新版本更新：6ssp魂师+4SSP暗器+SSP魂灵+SSP神器+SSP魂骨各种该有的都有全部PVP模式修复正常，上一版已知问题全修复",
     img: "https://cdn.phototourl.com/free/2026-04-16-495df581-a36c-41b0-ba3b-55ddbf540658.png",
@@ -173,6 +178,7 @@ const games = [
     android2: "http://123.207.28.103/index.php?id=fengyedao",
     ios: "http://123.207.28.103/index.php?id=fengyedaoios",
     ios2: "",
+    superSign: "#", // 填写就显示
     admin: "http://109.244.35.46:88/",
     info: "不要发太多经验，不然转不了职，就得重新买卡密了",
     img: "https://cdn.phototourl.com/free/2026-04-16-fc115083-adf2-4857-88c1-efe2c7351c2f.png",
@@ -218,13 +224,12 @@ games.forEach(g=>{
   // 1. 游戏名称
   html += `<div class="game-name">${g.name}</div>`;
 
-  // 2. 价格（在名称下面）
+  // 2. 价格
   if(g.price){
     html += `<div class="game-price">${g.price}</div>`;
   }
 
-  // 3. 下载按钮区域
-  // 安卓1
+  // 3. 安卓1
   html += `
   <div class="btn-row">
     <button class="btn-download android" onclick="window.open('${g.android}','_blank')">安卓下载</button>
@@ -232,7 +237,7 @@ games.forEach(g=>{
   </div>`;
 
   // 安卓2
-  if(g.android2){
+  if(g.android2 && g.android2 !== '#'){
     html += `
     <div class="btn-row">
       <button class="btn-download android" onclick="window.open('${g.android2}','_blank')">安卓下载2</button>
@@ -258,6 +263,15 @@ games.forEach(g=>{
     </div>`;
   }
 
+  // 苹果超级签（新加）
+  if(g.superSign && g.superSign !== '#'){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download supersign" onclick="window.open('${g.superSign}','_blank')">苹果超级签</button>
+      <button class="btn-copy" onclick="copyLink('${g.superSign}')">复制</button>
+    </div>`;
+  }
+
   // 后台
   html += `
   <div class="btn-row">
@@ -265,7 +279,7 @@ games.forEach(g=>{
     <button class="btn-copy" onclick="copyLink('${g.admin}')">复制</button>
   </div>`;
 
-  // 4. 游戏截图按钮（倒数第二）
+  // 游戏截图
   if(g.img){
     html += `
     <div class="btn-row">
@@ -273,7 +287,7 @@ games.forEach(g=>{
     </div>`;
   }
 
-  // 5. 版本说明（最底部）
+  // 版本说明
   if(g.info){
     html += `<div class="game-info">${g.info}</div>`;
   }
