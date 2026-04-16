@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>凯皇游戏</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+body{
+  min-height:100vh;
+  background:#fff;
+  padding:20px;
+  color:#111;
+}
+.page-title{
+  text-align:center;
+  font-size:30px;
+  margin:40px 0 20px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#0066ff,#00a0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.service-btn{
+  display:block;
+  margin:0 auto 40px;
+  padding:14px 30px;
+  background:linear-gradient(90deg,#1a6dff,#004eff);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.container{
+  max-width:520px;
+  margin:0 auto;
+}
+.game-card{
+  background:#fff;
+  border-radius:16px;
+  padding:26px;
+  margin-bottom:24px;
+  border:2px solid rgba(0,140,255,0.15);
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s ease;
+  box-shadow:0 4px 20px rgba(0,100,255,0.08);
+}
+.game-card::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:3px;
+  background:linear-gradient(90deg,#00a0ff,transparent,#00a0ff);
+  background-size:200% 100%;
+  animation:currentLine 3s linear infinite;
+}
+@keyframes currentLine{
+  0%{background-position:0 0;}
+  100%{background-position:200% 0;}
+}
+.game-price{
+  background:#fff1f0;
+  color:#c72828;
+  padding:10px 15px;
+  border-radius:8px;
+  margin-bottom:18px;
+  font-size:15px;
+  font-weight:bold;
+  text-align:center;
+}
+.game-info{
+  background:#f7f9ff;
+  padding:12px 15px;
+  border-radius:8px;
+  margin-top:18px;
+  font-size:14px;
+  color:#333;
+  line-height:1.5;
+  border-left:3px solid #1a6dff;
+}
+.game-name{
+  text-align:center;
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:12px;
+  color:#111;
+}
+.btn-row{
+  display:flex;
+  gap:10px;
+  margin-bottom:14px;
+  align-items:center;
+}
+.btn-download{
+  flex:1;
+  padding:15px;
+  border-radius:10px;
+  border:none;
+  font-size:15px;
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  background:linear-gradient(90deg,#1a6dff,#004eff);
+}
+.btn-download.ios{
+  background:linear-gradient(90deg,#5a39ff,#7c4dff);
+}
+.btn-download.admin{
+  background:linear-gradient(90deg,#2b58ff,#417dff);
+}
+.btn-download.img{
+  background:linear-gradient(90deg,#00c896,#00a878);
+}
+.btn-copy{
+  width:68px;
+  padding:15px 0;
+  border-radius:10px;
+  border:1px solid #e0e0e0;
+  background:#f7f9ff;
+  color:#1a6dff;
+  font-size:14px;
+  cursor:pointer;
+}
+.img-modal{
+  position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);
+  display:flex;align-items:center;justify-content:center;z-index:9999;
+  padding:20px;display:none;
+}
+.img-modal img{
+  max-width:100%;max-height:90vh;border-radius:10px;
+}
+.img-modal.show{display:flex;}
+</style>
+</head>
+
+<body>
+<h1 class="page-title">凯皇游戏</h1>
+<button class="service-btn" onclick="copyWechat()">复制微信客服开通后台</button>
+
+<div class="container" id="gameList"></div>
+
+<div class="img-modal" id="imgModal" onclick="closeImg()">
+  <img src="" id="bigImg">
+</div>
+
+<script>
+const wechatId = "18719246460";
+
+const games = [
+  {
+    name: "斗罗大陆6SSP",
+    price: "售价：128元",
+    android: "http://123.207.28.103/index.php?id=xindouluodalu6ssp",
+    android2: "http://106.55.188.65:520/",
+    ios: "#",
+    ios2: "",
+    admin: "https://admin.com",
+    info: "最新版本更新：6ssp魂师+4SSP暗器+SSP魂灵+SSP神器+SSP魂骨各种该有的都有全部PVP模式修复正常，上一版已知问题全修复",
+    img: "https://cdn.phototourl.com/free/2026-04-16-495df581-a36c-41b0-ba3b-55ddbf540658.png",
+  },
+  {
+    name: "传奇手游",
+    price: "88元 包更新",
+    info: "百倍爆率 | 上线满V | 稳定不闪退",
+    android: "https://an1.com",
+    android2: "",
+    ios: "https://ios1.com",
+    ios2: "",
+    admin: "https://admin.com",
+    img: ""
+  }
+];
+
+// 复制微信
+function copyWechat(){
+  navigator.clipboard.writeText(wechatId).then(()=>{
+    alert("微信客服复制成功！");
+  }).catch(()=>{
+    alert("复制失败，请手动复制："+wechatId);
+  })
+}
+
+// 复制链接
+function copyLink(text){
+  navigator.clipboard.writeText(text).then(()=>{
+    alert("链接复制成功！");
+  }).catch(()=>{
+    alert("复制失败，请手动复制："+text);
+  })
+}
+
+// 图片预览
+function openImg(src){
+  const m = document.getElementById('imgModal');
+  const i = document.getElementById('bigImg');
+  i.src = src;
+  m.classList.add('show');
+}
+function closeImg(){
+  document.getElementById('imgModal').classList.remove('show');
+}
+
+// 渲染
+const container = document.getElementById('gameList');
+games.forEach(g=>{
+  const card = document.createElement('div');
+  card.className = 'game-card';
+  let html = '';
+
+  // 1. 游戏名称
+  html += `<div class="game-name">${g.name}</div>`;
+
+  // 2. 价格（在名称下面）
+  if(g.price){
+    html += `<div class="game-price">${g.price}</div>`;
+  }
+
+  // 3. 下载按钮区域
+  // 安卓1
+  html += `
+  <div class="btn-row">
+    <button class="btn-download android" onclick="window.open('${g.android}','_blank')">安卓下载</button>
+    <button class="btn-copy" onclick="copyLink('${g.android}')">复制</button>
+  </div>`;
+
+  // 安卓2
+  if(g.android2){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download android" onclick="window.open('${g.android2}','_blank')">安卓下载2</button>
+      <button class="btn-copy" onclick="copyLink('${g.android2}')">复制</button>
+    </div>`;
+  }
+
+  // 苹果1
+  if(g.ios && g.ios !== '#'){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download ios" onclick="window.open('${g.ios}','_blank')">苹果下载</button>
+      <button class="btn-copy" onclick="copyLink('${g.ios}')">复制</button>
+    </div>`;
+  }
+
+  // 苹果2
+  if(g.ios2 && g.ios2 !== '#'){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download ios" onclick="window.open('${g.ios2}','_blank')">苹果下载2</button>
+      <button class="btn-copy" onclick="copyLink('${g.ios2}')">复制</button>
+    </div>`;
+  }
+
+  // 后台
+  html += `
+  <div class="btn-row">
+    <button class="btn-download admin" onclick="window.open('${g.admin}','_blank')">后台地址</button>
+    <button class="btn-copy" onclick="copyLink('${g.admin}')">复制</button>
+  </div>`;
+
+  // 4. 游戏截图按钮（倒数第二）
+  if(g.img){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download img" onclick="openImg('${g.img}')">游戏截图</button>
+    </div>`;
+  }
+
+  // 5. 版本说明（最底部）
+  if(g.info){
+    html += `<div class="game-info">${g.info}</div>`;
+  }
+
+  card.innerHTML = html;
+  container.appendChild(card);
+})
+</script>
+</body>
+</html>
