@@ -125,9 +125,14 @@ body{
 .btn-download.buy{
   background:linear-gradient(90deg, #ff6b35, #ff451a);
 }
-/* 激活后台按钮样式 */
 .btn-download.active{
   background:linear-gradient(90deg, #ffcc00, #ff9900);
+}
+.btn-download.register{
+  background:linear-gradient(90deg, #00c896, #00a878);
+}
+.btn-download.pc{
+  background:linear-gradient(90deg, #6a11cb, #2575fc);
 }
 .btn-copy{
   width:68px;
@@ -168,6 +173,8 @@ const games = [
   {
     name: "斗罗大陆6SSP",
     price: "售价：188元",
+    register: "#",
+    pc: "#",
     android: "http://123.207.28.103/index.php?id=xindouluodalu6ssp",
     android2: "#",
     ios: "#",
@@ -175,13 +182,15 @@ const games = [
     superSign: "#",
     superBuy: "#",
     admin: "http://106.55.188.65:520/",
-    active: "#", // 激活后台
+    active: "#",
     info: "最新版本更新：6ssp魂师+4SSP暗器+SSP魂灵+SSP神器+SSP魂骨各种该有的都有全部PVP模式修复正常，上一版已知问题全修复",
     img: "https://cdn.phototourl.com/free/2026-04-16-495df581-a36c-41b0-ba3b-55ddbf540658.png",
   },
   {
     name: "枫叶岛冒险岛H5（内购+后台）",
     price: "售价：388元无限内购 | 588元内购+物品后台",
+    register: "#",
+    pc: "#",
     android: "http://109.244.35.46:82/index/user/login.html",
     android2: "http://123.207.28.103/index.php?id=fengyedao",
     ios: "http://123.207.28.103/index.php?id=fengyedaoios",
@@ -196,6 +205,8 @@ const games = [
   {
     name: "九州江湖情（内购+后台）",
     price: "售价：488元无限内购 | 688元内购+物品后台",
+    register: "#",
+    pc: "#",
     android: "http://123.207.28.103/index.php?id=jiuzhoujianghuqing",
     android2: "#",
     ios: "#",
@@ -210,6 +221,8 @@ const games = [
   {
     name: "口袋大冒险",
     price: "售价：188元",
+    register: "#",
+    pc: "#",
     android: "http://123.207.28.103/index.php?id=koudaidamaoxian",
     android2: "#",
     ios: "#",
@@ -224,6 +237,8 @@ const games = [
   {
     name: "死神虚域（内购+后台）",
     price: "售价：188元",
+    register: "#",
+    pc: "#",
     android: "https://www.123865.com/s/XOZ0Vv-OgqW",
     android2: "https://yp.gmbt.cc/d/xz/apk/ssxy.apk",
     ios: "#",
@@ -238,6 +253,8 @@ const games = [
   {
     name: "波利冒险记-圣典英雄（物品后台）",
     price: "售价：188元",
+    register: "#",
+    pc: "#",
     android: "https://www.123865.com/s/XOZ0Vv-HYqW",
     android2: "https://yp.gmbt.cc/d/xz/apk/blmxj.apk",
     ios: "#",
@@ -252,6 +269,8 @@ const games = [
   {
     name: "幻灵大冒险（物品后台）",
     price: "售价：288元无限内购 | 488元内购+物品后台",
+    register: "#",
+    pc: "#",
     android: "https://js.cdn6.vip/rsNOg",
     android2: "#",
     ios: "#",
@@ -266,6 +285,8 @@ const games = [
   {
     name: "疾风之刃（物品后台）",
     price: "售价：488元",
+    register: "#",
+    pc: "#",
     android: "https://js.cdn6.vip/QRdrU",
     android2: "#",
     ios: "#",
@@ -274,12 +295,14 @@ const games = [
     superBuy: "http://w.kami.vip/s/fQG9m",
     admin: "http://106.74.34.2:81/ht/",
     active: "#",
-    info: "用多少发多少，不要一次性发太多即可，如需电脑上玩也可以联系客服获取链接",
+    info: "用多少发多少，不要一次性发太多即可",
     img: "https://cdn.phototourl.com/free/2026-04-16-76a5efe2-7a51-4286-99da-4ec3578850f8.png"
   },
   {
     name: "三国兵临天下同官神圣功能版H5（内购+后台）",
-    price: "售价：200元",
+    price: "售价：188元",
+    register: "#",
+    pc: "http://43.248.184.227:81/?mpc=0 ",
     android: "http://43.248.184.227:81/",
     android2: "https://js.cdn6.vip/WijWo",
     ios: "https://js.cdn6.vip/GeT58",
@@ -288,12 +311,14 @@ const games = [
     superBuy: "#",
     admin: "http://43.248.184.227:81/htgame/",
     active: "#",
-    info: "同步最新8合全功能，有神圣切换功能，山崩，拒马，御守，灵能，诈降，诡道，戒备等等技能都有，全英雄神、圣觉醒，都有，祖龙套跟九宝紫金冠等等宝物全有，兽灵和神灵每次发不要超过300，包裹不留多余的，安卓1是网页版，安卓2是安装包，如需电脑玩也可以联系客服获取链接",
+    info: "同步最新8合全功能，有神圣切换功能，山崩，拒马，御守，灵能，诈降，诡道，戒备等等技能都有，全英雄神、圣觉醒，都有，祖龙套跟九宝紫金冠等等宝物全有，兽灵和神灵每次发不要超过300，包裹不留多余的",
     img: "https://cdn.phototourl.com/free/2026-04-16-9b4cb556-1931-4b19-9700-57e234ed5e80.png"
   },
   {
     name: "冰雪大作战（物品后台）独家多人对战",
     price: "售价：68元",
+    register: "#",
+    pc: "#",
     android: "https://js.cdn6.vip/gw3Vc",
     android2: "#",
     ios: "#",
@@ -306,103 +331,149 @@ const games = [
     img: "https://cdn.phototourl.com/free/2026-04-16-6cba937c-3095-46d7-b6ac-a5d1c91aba5e.png"
   },
   {
-  name: "梦幻诛仙15职业（物品后台）",
-  price: "售价：288元",
-  android: "https://js.cdn6.vip/hzeBj",
-  android2: "#",
-  ios: "#",
-  ios2: "#",
-  superSign: "https://hetaobao.cn/vip/o91i",
-  superBuy: "http://w.kami.vip/s/fQG9m",
-  admin: "http://43.248.184.152:18888/",
-  active: "#",
-  info: "注册邀请码：A88，此版本更新了很多新的东西，后续持续更新",
-  img: "https://cdn.phototourl.com/member/2026-04-16-f2ff262a-6c7c-44b1-af57-48405d0501b9.png"
-},
+    name: "梦幻诛仙15职业（物品后台）",
+    price: "售价：288元",
+    register: "#",
+    pc: "#",
+    android: "https://js.cdn6.vip/hzeBj",
+    android2: "#",
+    ios: "#",
+    ios2: "#",
+    superSign: "https://hetaobao.cn/vip/o91i",
+    superBuy: "http://w.kami.vip/s/fQG9m",
+    admin: "http://43.248.184.152:18888/",
+    active: "#",
+    info: "注册邀请码：A88，此版本更新了很多新的东西，后续持续更新",
+    img: "https://cdn.phototourl.com/member/2026-04-16-f2ff262a-6c7c-44b1-af57-48405d0501b9.png"
+  },
   {
-  name: "元素精灵（内购+后台）",
-  price: "售价：188元无限内购 | 288元内购+物品后台",
-  android: "https://js.cdn6.vip/2YcEx",
-  android2: "#",
-  ios: "#",
-  ios2: "#",
-  superSign: "#",
-  superBuy: "#",
-  admin: "http://134.175.78.105/ht",
-  active: "#",
-  info: "用多少发多少，不要一次性发太多即可",
-  img: "https://cdn.phototourl.com/member/2026-04-16-a209aee2-57b2-4997-9b25-237ed718e155.png"
-},
+    name: "元素精灵（内购+后台）",
+    price: "售价：188元无限内购 | 288元内购+物品后台",
+    register: "#",
+    pc: "#",
+    android: "https://js.cdn6.vip/2YcEx",
+    android2: "#",
+    ios: "#",
+    ios2: "#",
+    superSign: "#",
+    superBuy: "#",
+    admin: "http://134.175.78.105/ht",
+    active: "#",
+    info: "用多少发多少，不要一次性发太多即可",
+    img: "https://cdn.phototourl.com/member/2026-04-16-a209aee2-57b2-4997-9b25-237ed718e155.png"
+  },
   {
-  name: "忍者必须死3（物品后台）",
-  price: "售价：288元无限内购 | 388元内购+物品后台",
-  android: "https://js.cdn6.vip/QmYV9",
-  android2: "#",
-  ios: "#",
-  ios2: "#",
-  superSign: "https://hetaobao.cn/vip/ilsk",
-  superBuy: "http://w.kami.vip/s/fQG9m",
-  admin: "http://43.254.106.113:89/",
-  active: "#",
-  info: "用多少发多少，不要一次性发太多即可",
-  img: "https://cdn.phototourl.com/member/2026-04-16-8da5af89-3fce-4fa5-87b6-d72b4aa8dd38.png"
-},
+    name: "忍者必须死3（物品后台）",
+    price: "售价：288元无限内购 | 388元内购+物品后台",
+    register: "#",
+    pc: "#",
+    android: "https://js.cdn6.vip/QmYV9",
+    android2: "#",
+    ios: "#",
+    ios2: "#",
+    superSign: "https://hetaobao.cn/vip/ilsk",
+    superBuy: "http://w.kami.vip/s/fQG9m",
+    admin: "http://43.254.106.113:89/",
+    active: "#",
+    info: "用多少发多少，不要一次性发太多即可",
+    img: "https://cdn.phototourl.com/member/2026-04-16-8da5af89-3fce-4fa5-87b6-d72b4aa8dd38.png"
+  },
   {
-  name: "刀锋战记2：邪恶回归（物品后台）",
+    name: "刀锋战记2：邪恶回归（物品后台）",
+    price: "售价：388元无限内购 | 588元内购+物品后台",
+    register: "#",
+    pc: "#",
+    android: "https://js.cdn6.vip/xk2uI",
+    android2: "https://js.cdn6.vip/kXPUq",
+    ios: "#",
+    ios2: "#",
+    superSign: "#",
+    superBuy: "#",
+    admin: "http://43.248.119.177:8081/htdf/gm/",
+    active: "http://43.248.119.177:8081/htdf/pay/",
+    info: "想要电脑端玩的也可以联系客服获取链接",
+    img: "https://cdn.phototourl.com/member/2026-04-16-400b3e61-d0c4-4f6a-b349-98a5c44d776f.png"
+  },
+  {
+    name: "诛魔录（内购+后台）",
+    price: "售价：128元",
+    register: "#",
+    pc: "#",
+    android: "https://js.cdn6.vip/aHwif",
+    android2: "#",
+    ios: "#",
+    ios2: "#",
+    superSign: "#",
+    superBuy: "#",
+    admin: "http://43.138.158.205/ht",
+    active: "#",
+    info: "用多少发多少，不要一次性发太多即可",
+    img: "https://cdn.phototourl.com/member/2026-04-16-6ff4e8ec-b9b5-489a-883a-e4a6ed444fc7.png"
+  },
+  {
+    name: "青丘狐传说（物品后台）",
+    price: "售价：188元无限内购 | 388元内购+物品后台",
+    register: "#",
+    pc: "#",
+    android: "http://149.88.74.15:936/index.php?id=qqh",
+    android2: "#",
+    ios: "#",
+    ios2: "#",
+    superSign: "https://hetaobao.cn/vip/gv7u",
+    superBuy: "http://w.kami.vip/s/fQG9m",
+    admin: "http://103.236.79.7:81/ht/",
+    active: "#",
+    info: "更新：新增两个超凡战魂；新增一个超凡神器；新增三个超凡头像；更新情人节双人套餐；更新春节活动套餐；更新全新元宵 愚人节 各类套餐，合成材料可通过古城玩法、活跃度任务以及野外挂机获得，多余的合成材料可直接开启以获取钻石",
+    img: "https://cdn.phototourl.com/member/2026-04-16-73dc47b2-07bc-4167-94a5-15926ea982ab.png"
+  },
+  {
+    name: "光明世纪-荣耀殿堂（物品后台）",
+    price: "售价：288元无限内购 | 488元内购+物品后台",
+    register: "#",
+    pc: "#",
+    android: "https://js.cdn6.vip/ztOk5",
+    android2: "#",
+    ios: "#",
+    ios2: "#",
+    superSign: "#",
+    superBuy: "#",
+    admin: "http://43.254.106.52:88/cdk.html",
+    active: "#",
+    info: "用多少发多少，不要一次性发太多即可",
+    img: "https://cdn.phototourl.com/member/2026-04-16-f76444a7-b557-4c65-b31f-e266980988b9.png"
+  },
+  {
+  name: "斗罗大陆2绝世唐门（物品后台）",
   price: "售价：388元无限内购 | 588元内购+物品后台",
-  android: "https://js.cdn6.vip/xk2uI",
-  android2: "https://js.cdn6.vip/kXPUq",
-  ios: "#",
-  ios2: "#",
-  superSign: "#",
-  superBuy: "#",
-  admin: "http://43.248.119.177:8081/htdf/gm/",
-  active: "http://43.248.119.177:8081/htdf/pay/",
-  info: "想要电脑端玩的也可以联系客服获取链接",
-  img: "https://cdn.phototourl.com/member/2026-04-16-400b3e61-d0c4-4f6a-b349-98a5c44d776f.png"
-},
-  {
-  name: "诛魔录（内购+后台）",
-  price: "售价：128元",
-  android: "https://js.cdn6.vip/aHwif",
+  register: "http://114.66.24.34:88/reg/",
+  pc: "#",
+  android: "https://js.cdn6.vip/0jZmb",
   android2: "#",
   ios: "#",
   ios2: "#",
-  superSign: "#",
-  superBuy: "#",
-  admin: "http://43.138.158.205/ht",
-  active: "#",
-  info: "用多少发多少，不要一次性发太多即可",
-  img: "https://cdn.phototourl.com/member/2026-04-16-6ff4e8ec-b9b5-489a-883a-e4a6ed444fc7.png"
-},
-  {
-  name: "青丘狐传说（物品后台）",
-  price: "售价：188元无限内购 | 388元内购+物品后台",
-  android: "http://149.88.74.15:936/index.php?id=qqh",
-  android2: "#",
-  ios: "#",
-  ios2: "#",
-  superSign: "https://hetaobao.cn/vip/gv7u",
+  superSign: "https://hetaobao.cn/vip/4orb",
   superBuy: "http://w.kami.vip/s/fQG9m",
-  admin: "http://103.236.79.7:81/ht/",
+  admin: "http://114.66.24.34:88/gmx/gm/",
   active: "#",
-  info: "更新：新增两个超凡战魂；新增一个超凡神器；新增三个超凡头像；更新情人节双人套餐；更新春节活动套餐；更新全新元宵 愚人节 各类套餐，合成材料可通过古城玩法、活跃度任务以及野外挂机获得，多余的合成材料可直接开启以获取钻石",
-  img: "https://cdn.phototourl.com/member/2026-04-16-73dc47b2-07bc-4167-94a5-15926ea982ab.png"
+  info: "用多少发多少，不要一次性发太多即可",
+  img: "https://cdn.phototourl.com/member/2026-04-16-177a82dd-0d62-421e-9cf3-85b90cced2ca.png"
 },
   {
-  name: "光明世纪-荣耀殿堂（物品后台）",
-  price: "售价：288元无限内购 | 488元内购+物品后台",
-  android: "https://js.cdn6.vip/ztOk5",
+  name: "游戏名称",
+  price: "售价：XX元",
+  register: "#",        // 注册地址
+  pc: "#",              // 电脑下载
+  android: "安卓链接",
   android2: "#",
   ios: "#",
   ios2: "#",
   superSign: "#",
   superBuy: "#",
-  admin: "http://43.254.106.52:88/cdk.html",
+  admin: "后台地址",
   active: "#",
-  info: "用多少发多少，不要一次性发太多即可",
-  img: "https://cdn.phototourl.com/member/2026-04-16-f76444a7-b557-4c65-b31f-e266980988b9.png"
-}
+  info: "说明",
+  img: "图片链接"
+},
 ];
 
 // 复制微信
@@ -445,6 +516,24 @@ games.forEach(g=>{
 
   if(g.price){
     html += `<div class="game-price">${g.price}</div>`;
+  }
+
+  // 注册地址
+  if(g.register && g.register !== '#'){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download register" onclick="window.open('${g.register}','_blank')">注册地址</button>
+      <button class="btn-copy" onclick="copyLink('${g.register}')">复制</button>
+    </div>`;
+  }
+
+  // 电脑下载
+  if(g.pc && g.pc !== '#'){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download pc" onclick="window.open('${g.pc}','_blank')">电脑下载</button>
+      <button class="btn-copy" onclick="copyLink('${g.pc}')">复制</button>
+    </div>`;
   }
 
   // 安卓1
@@ -506,7 +595,7 @@ games.forEach(g=>{
     <button class="btn-copy" onclick="copyLink('${g.admin}')">复制</button>
   </div>`;
 
-  // 激活后台 👈 新加按钮
+  // 激活后台
   if(g.active && g.active !== '#'){
     html += `
     <div class="btn-row">
