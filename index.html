@@ -119,9 +119,13 @@ body{
 .btn-download.img{
   background:linear-gradient(90deg,#00c896,#00a878);
 }
-/* 超级签按钮样式 */
+/* 超级签按钮 */
 .btn-download.supersign{
   background:linear-gradient(90deg, #ff4d94, #ff3366);
+}
+/* 超级签购买按钮 */
+.btn-download.buy{
+  background:linear-gradient(90deg, #ff6b35, #ff451a);
 }
 .btn-copy{
   width:68px;
@@ -166,7 +170,8 @@ const games = [
     android2: "#",
     ios: "#",
     ios2: "",
-    superSign: "#", // 苹果超级签，不显示
+    superSign: "#",
+    superBuy: "#", // 购买按钮，不显示
     admin: "http://106.55.188.65:520/",
     info: "最新版本更新：6ssp魂师+4SSP暗器+SSP魂灵+SSP神器+SSP魂骨各种该有的都有全部PVP模式修复正常，上一版已知问题全修复",
     img: "https://cdn.phototourl.com/free/2026-04-16-495df581-a36c-41b0-ba3b-55ddbf540658.png",
@@ -178,10 +183,24 @@ const games = [
     android2: "http://123.207.28.103/index.php?id=fengyedao",
     ios: "http://123.207.28.103/index.php?id=fengyedaoios",
     ios2: "",
-    superSign: "#", // 填写就显示
+    superSign: "https://chaojiqian.com",
+    superBuy: "https://chaojiqian-buy.com", // 填写就显示购买按钮
     admin: "http://109.244.35.46:88/",
     info: "不要发太多经验，不然转不了职，就得重新买卡密了",
     img: "https://cdn.phototourl.com/free/2026-04-16-fc115083-adf2-4857-88c1-efe2c7351c2f.png",
+  }
+    {
+    name: "九州江湖情（内购+后台）",
+    price: "售价：488元无限内购 | 688元物品后台",
+    android: "http://123.207.28.103/index.php?id=jiuzhoujianghuqing",
+    android2: "",
+    ios: "",
+    ios2: "",
+    superSign: "https://hetaobao.cn/vip/1wsz",
+    superBuy: "https://www.kuaifaka.net/purchasing?link=fQG9m", // 填写就显示购买按钮
+    admin: "http://106.53.135.185/ht/player/",
+    info: "最新版本",
+    img: "https://cdn.phototourl.com/free/2026-04-16-8f5cb4bd-f2fb-4235-a2ee-6087e2efd525.png",
   }
 ];
 
@@ -263,12 +282,21 @@ games.forEach(g=>{
     </div>`;
   }
 
-  // 苹果超级签（新加）
+  // 苹果超级签
   if(g.superSign && g.superSign !== '#'){
     html += `
     <div class="btn-row">
       <button class="btn-download supersign" onclick="window.open('${g.superSign}','_blank')">苹果超级签</button>
       <button class="btn-copy" onclick="copyLink('${g.superSign}')">复制</button>
+    </div>`;
+  }
+
+  // 苹果超级签购买 👈 新加按钮
+  if(g.superBuy && g.superBuy !== '#'){
+    html += `
+    <div class="btn-row">
+      <button class="btn-download buy" onclick="window.open('${g.superBuy}','_blank')">超级签购买</button>
+      <button class="btn-copy" onclick="copyLink('${g.superBuy}')">复制</button>
     </div>`;
   }
 
