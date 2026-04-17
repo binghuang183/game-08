@@ -118,7 +118,7 @@ body{
   box-shadow: 0 5px 15px rgba(26,109,255,0.3);
 }
 
-/* 🔥 固定左上角：添加到桌面按钮 */
+/* 固定左上角：添加到桌面按钮 */
 .addHome-btn{
   position: fixed;
   top: 15px;
@@ -133,6 +133,53 @@ body{
   font-weight:bold;
   cursor:pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* 添加到桌面弹窗 */
+.addModal{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:99999;
+  padding:20px;
+}
+.addModal.show{
+  display:flex;
+}
+.addBox{
+  background:#fff;
+  max-width:400px;
+  width:100%;
+  border-radius:16px;
+  padding:30px;
+  text-align:center;
+}
+.addTitle{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:20px;
+  color:#222;
+}
+.addTip{
+  font-size:15px;
+  color:#333;
+  line-height:1.7;
+  margin-bottom:10px;
+  text-align:left;
+}
+.closeAdd{
+  padding:10px 25px;
+  background:#ff6b35;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  margin-top:20px;
+  cursor:pointer;
+  font-weight:bold;
 }
   
 .container{
@@ -289,6 +336,7 @@ body{
     <div class="addTip">1. 点击浏览器右上角【…】或者【分享】按钮</div>
     <div class="addTip">2. 选择【添加到桌面】或【添加到主屏幕】</div>
     <div class="addTip">3. 点击添加，桌面就会出现快捷图标啦！</div>
+    <div class="addTip">4. 为方便您后续快速访问，建议将本页面添加至浏览器书签栏！</div>
     <button class="closeAdd" onclick="closeAddModal()">我知道了</button>
   </div>
 </div>
