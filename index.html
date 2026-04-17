@@ -41,6 +41,20 @@ body{
   cursor:pointer;
 }
 
+/* 最新手游更新按钮 */
+.newGame-btn{
+  display:block;
+  margin:10px auto 20px;
+  padding:12px 25px;
+  background:linear-gradient(90deg,#ff3c6e,#ff6b35);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 /* 游戏目录弹窗 */
 .menu-modal{
   position:fixed;
@@ -343,6 +357,7 @@ body{
 
 <!-- 游戏目录按钮 -->
 <button class="nav-btn" onclick="openGameMenu()">游戏目录|搜索游戏</button>
+<button class="newGame-btn" onclick="openNewGameModal()">🔥 最新手游更新</button>
 
 <button class="service-btn" onclick="copyWechat()">复制微信|加客服开通后台</button>
 
@@ -352,6 +367,14 @@ body{
     <div class="menu-title">游戏列表</div>
     <input type="text" class="search-input" id="gameSearch" placeholder="搜索游戏名称..." oninput="searchGame()">
     <div id="gameMenuList"></div>
+  </div>
+</div>
+
+<!-- 最新手游弹窗 -->
+<div class="newGameModal" id="newGameModal" onclick="closeNewGameModal()">
+  <div class="newGameBox" onclick="event.stopPropagation()">
+    <div class="newGameTitle">🔥 最新手游上新</div>
+    <div id="newGameList"></div>
   </div>
 </div>
 
@@ -3830,6 +3853,45 @@ const games = [
   img: "https://i.postimg.cc/XNw8gJvs/5ddd8b7f41ce84a82bd0d80cb6672e26.png"
 }
 ];
+
+// ==============================
+// 最新上新游戏列表
+// ==============================
+const newGames = [
+  { name: "斗罗大陆6SSP", time: "2026-04-16", index: 0 },
+  { name: "枫叶岛冒险岛H5", time: "2026-04-16", index: 1 },
+];
+
+// 打开最新游戏弹窗
+function openNewGameModal(){
+  document.getElementById('newGameModal').classList.add('show');
+  renderNewGameList();
+}
+// 关闭
+function closeNewGameModal(){
+  document.getElementById('newGameModal').classList.remove('show');
+}
+
+// 渲染最新游戏列表
+function renderNewGameList(){
+  const box = document.getElementById('newGameList');
+  box.innerHTML = '';
+  newGames.forEach(item=>{
+    box.innerHTML += `
+      <div class="newGameItem" onclick="goToNewGame(${item.index})">
+        ${item.name}
+        <div class="time">${item.time}</div>
+      </div>
+    `;
+  });
+}
+
+// 跳转到对应游戏
+function goToNewGame(index){
+  closeNewGameModal();
+  const cards = document.querySelectorAll('.game-card');
+  cards[index].scrollIntoView({ behavior:'smooth' });
+}
 
 // 打开游戏目录
 function openGameMenu(){
