@@ -181,6 +181,29 @@ body{
   cursor:pointer;
   font-weight:bold;
 }
+
+/* ========== 返回顶部悬浮按钮（新加） ========== */
+.backTop{
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(90deg,#0066ff,#00a0ff);
+  color: #fff;
+  font-size: 22px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,100,255,0.2);
+  cursor: pointer;
+  z-index: 999;
+  display: none; /* 默认隐藏 */
+  align-items: center;
+  justify-content: center;
+}
+.backTop.show{
+  display: flex;
+}
   
 .container{
   max-width:520px;
@@ -312,6 +335,9 @@ body{
 
 <!-- 🔥 固定左上角：添加桌面图标按钮 -->
 <button class="addHome-btn" onclick="showAddTip()">📲 添加桌面</button>
+
+<!-- ========== 返回顶部按钮（新加） ========== -->
+<button class="backTop" onclick="goToTop()" id="backTop">⬆️</button>
 
 <h1 class="page-title">凯皇游戏</h1>
 
@@ -3844,6 +3870,20 @@ function showAddTip(){
 }
 function closeAddModal(){
   document.getElementById('addModal').classList.remove('show');
+}
+
+// ========== 返回顶部功能（新加） ==========
+function goToTop(){
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+// 滑动显示/隐藏按钮
+window.onscroll = function(){
+  const btn = document.getElementById('backTop');
+  if(window.scrollY > 200){
+    btn.classList.add('show');
+  }else{
+    btn.classList.remove('show');
+  }
 }
 
 // 复制微信
