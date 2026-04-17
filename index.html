@@ -72,6 +72,19 @@ body{
   margin-bottom:20px;
   color:#222;
 }
+  /* 搜索框 */
+.search-input{
+  width:100%;
+  padding:10px 14px;
+  border:1px solid #cce5ff;
+  border-radius:10px;
+  font-size:15px;
+  margin-bottom:15px;
+  outline:none;
+}
+.search-input:focus{
+  border-color:#0066ff;
+}
 .menu-item{
   padding:12px 15px;
   background:#f0f7ff;
@@ -237,6 +250,7 @@ body{
 <div class="menu-modal" id="gameMenuModal" onclick="closeGameMenu()">
   <div class="menu-box" onclick="event.stopPropagation()">
     <div class="menu-title">游戏列表</div>
+    <input type="text" class="search-input" id="gameSearch" placeholder="搜索游戏名称..." oninput="searchGame()">
     <div id="gameMenuList"></div>
   </div>
 </div>
@@ -3720,13 +3734,23 @@ function goToGame(index){
   cards[index].scrollIntoView({ behavior:'smooth' });
 }
 
-// 自动生成游戏菜单
-const menuList = document.getElementById('gameMenuList');
-games.forEach((g,i)=>{
-  menuList.innerHTML += `
-    <div class="menu-item" onclick="goToGame(${i})">${g.name}</div>
-  `;
-});
+// 渲染菜单（支持搜索）
+function renderMenu(filterText = ''){
+  const menuList = document.getElementById('gameMenuList');
+  menuList.innerHTML = '';
+  games.forEach((g,i)=>{
+    if(g.name.includes(filterText)){
+      menuList.innerHTML += `<div class="menu-item" onclick="goToGame(${i})">${g.name}</div>`;
+    }
+  });
+}
+renderMenu();
+
+// 搜索游戏
+function searchGame(){
+  const txt = document.getElementById('gameSearch').value.trim();
+  renderMenu(txt);
+}
 
 // 复制微信
 function copyWechat(){
