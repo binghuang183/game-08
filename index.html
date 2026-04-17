@@ -1981,7 +1981,7 @@ games.forEach(g=>{
   }
 
   // 后台地址
-  if(g.active && g.active !== '#'){
+  if(g.admin && g.admin !== '#'){
   html += `
   <div class="btn-row">
     <button class="btn-download admin" onclick="window.open('${g.admin}','_blank')">后台地址</button>
