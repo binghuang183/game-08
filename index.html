@@ -111,7 +111,30 @@ body{
   font-size:16px;
   font-weight:bold;
   cursor:pointer;
+  transition:0.3s;
 }
+.service-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(26,109,255,0.3);
+}
+
+/* 🔥 固定左上角：添加到桌面按钮 */
+.addHome-btn{
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 999;
+  padding: 8px 12px;
+  background:linear-gradient(90deg,#ff9500,#ff5e00);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+  
 .container{
   max-width:520px;
   margin:0 auto;
@@ -239,6 +262,10 @@ body{
 </head>
 
 <body>
+
+<!-- 🔥 固定左上角：添加桌面图标按钮 -->
+<button class="addHome-btn" onclick="showAddTip()">📲 添加桌面</button>
+
 <h1 class="page-title">凯皇游戏</h1>
 
 <!-- 游戏目录按钮 -->
@@ -252,6 +279,17 @@ body{
     <div class="menu-title">游戏列表</div>
     <input type="text" class="search-input" id="gameSearch" placeholder="搜索游戏名称..." oninput="searchGame()">
     <div id="gameMenuList"></div>
+  </div>
+</div>
+
+<!-- 添加到桌面指引弹窗 -->
+<div class="addModal" id="addModal" onclick="closeAddModal()">
+  <div class="addBox" onclick="event.stopPropagation()">
+    <div class="addTitle">添加到桌面</div>
+    <div class="addTip">1. 点击浏览器右上角【…】或者【分享】按钮</div>
+    <div class="addTip">2. 选择【添加到桌面】或【添加到主屏幕】</div>
+    <div class="addTip">3. 点击添加，桌面就会出现快捷图标啦！</div>
+    <button class="closeAdd" onclick="closeAddModal()">我知道了</button>
   </div>
 </div>
 
@@ -3750,6 +3788,14 @@ renderMenu();
 function searchGame(){
   const txt = document.getElementById('gameSearch').value.trim();
   renderMenu(txt);
+}
+
+// 显示添加桌面指引
+function showAddTip(){
+  document.getElementById('addModal').classList.add('show');
+}
+function closeAddModal(){
+  document.getElementById('addModal').classList.remove('show');
 }
 
 // 复制微信
