@@ -4538,8 +4538,15 @@ games.forEach(g=>{
     </div>`;
   }
 
-  // 10 分钟自动刷新一次
-  setInterval(() => location.reload(), 600000);
+  // 每 3 分钟无感知更新游戏列表（不闪烁、不跳动）
+  setInterval(async () => {
+  try {
+    const res = await fetch(location.href);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    document.getElementById('gameList').innerHTML = doc.getElementById('gameList').innerHTML;
+  } catch (err) {}
+  }, 180000);
 
   // 版本说明
   if(g.info){
