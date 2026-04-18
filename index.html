@@ -183,6 +183,95 @@ body{
   box-shadow: 0 5px 15px rgba(26,109,255,0.3);
 }
 
+/* 购买游戏按钮 */
+.buyGame-btn{
+  display:block;
+  margin:10px auto 30px;
+  padding:12px 25px;
+  background:linear-gradient(90deg, #11c274, #08a060);
+  color:#fff;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+}
+/* 购买游戏弹窗 */
+.buyModal{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:20px;
+}
+.buyModal.show{
+  display:flex;
+}
+.buyBox{
+  background:#fff;
+  max-width:400px;
+  width:100%;
+  border-radius:16px;
+  padding:25px;
+  max-height:80vh;
+  overflow-y:auto;
+}
+.buyTitle{
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:15px;
+  color:#222;
+}
+/* 购买搜索框 */
+.buySearch{
+  width:100%;
+  padding:10px 14px;
+  border:1px solid #cce5ff;
+  border-radius:10px;
+  font-size:15px;
+  margin-bottom:15px;
+  outline:none;
+}
+.buySearch:focus{
+  border-color:#08a060;
+}
+.buyItem{
+  padding:14px 16px;
+  background:#f0fff9;
+  color:#08a060;
+  border-radius:10px;
+  margin-bottom:10px;
+  font-weight:bold;
+  cursor:pointer;
+  text-align:center;
+}
+.buyItem:hover{
+  background:#08a060;
+  color:#fff;
+}
+.buyPrice{
+  font-size:12px;
+  color:#999;
+  margin-top:4px;
+  text-align:center;
+}
+.customPayBtn{
+  width:100%;
+  padding:14px;
+  background:linear-gradient(90deg,#ff6b35,#ff451a);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  margin-top:15px;
+  cursor:pointer;
+}
+
 /* 固定左上角：添加到桌面按钮 */
 .addHome-btn{
   position: static;
@@ -407,11 +496,24 @@ body{
 <h1 class="page-title">凯皇游戏</h1>
 
 <!-- 游戏目录按钮 -->
-<button class="nav-btn" onclick="openGameMenu()">游戏目录|搜索游戏</button>
+<button class="nav-btn" onclick="openGameMenu()">游戏目录 | 搜索游戏</button>
 
-<button class="newGame-btn" onclick="openNewGameModal()">🔥 最新手游更新</button>
+<button class="newGame-btn" onclick="openNewGameModal()">🎮 最新手游更新</button>
 
-<button class="service-btn" onclick="copyWechat()">复制微信|加客服开通后台</button>
+<button class="service-btn" onclick="copyWechat()">复制微信 | 加客服开通后台</button>
+
+<button class="buyGame-btn" onclick="openBuyModal()">💰 立即购买 | 联系客服</button>
+
+<!-- 购买游戏弹窗 -->
+<div class="buyModal" id="buyModal" onclick="closeBuyModal()">
+  <div class="buyBox" onclick="event.stopPropagation()">
+    <div class="buyTitle">选择游戏购买</div>
+    <!-- 搜索框 -->
+    <input type="text" class="buySearch" id="buySearch" placeholder="搜索购买游戏..." oninput="searchBuyGame()">
+    <div id="buyList"></div>
+    <button class="customPayBtn" onclick="goToCustomPay()">💰 自定义金额付款</button>
+  </div>
+</div>
 
 <!-- 游戏目录弹窗 -->
 <div class="menu-modal" id="gameMenuModal" onclick="closeGameMenu()">
@@ -3998,6 +4100,65 @@ window.onscroll = function(){
   }else{
     btn.classList.remove('show');
   }
+}
+
+// ================== 购买游戏配置（自己改这里）==================
+const buyGames = [
+  {
+    name: "斗罗大陆6SSP",
+    price: "188元",
+    payUrl: "https://你的付款链接"
+  },
+  {
+    name: "枫叶岛冒险岛H5",
+    price: "388元 / 588元",
+    payUrl: "https://你的付款链接"
+  }
+];
+
+// 自定义金额付款链接
+const customPayUrl = "https://你的自定义付款链接";
+
+// ================== 功能代码 ==================
+function openBuyModal(){
+  document.getElementById('buyModal').classList.add('show');
+  renderBuyList();
+}
+
+function closeBuyModal(){
+  document.getElementById('buyModal').classList.remove('show');
+}
+
+// 渲染购买列表（支持搜索）
+function renderBuyList(filterText = ''){
+  const box = document.getElementById('buyList');
+  box.innerHTML = '';
+  buyGames.forEach(g=>{
+    if(g.name.includes(filterText)){
+      box.innerHTML += `
+        <div class="buyItem" onclick="goToPay('${g.payUrl}')">
+          ${g.name}
+          <div class="buyPrice">${g.price}</div>
+        </div>
+      `;
+    }
+  });
+}
+
+// 搜索购买游戏
+function searchBuyGame(){
+  const txt = document.getElementById('buySearch').value.trim();
+  renderBuyList(txt);
+}
+
+// 跳转付款
+function goToPay(url){
+  window.open(url, '_blank');
+}
+
+// 自定义金额
+function goToCustomPay(){
+  window.open(customPayUrl, '_blank');
 }
 
 // 复制微信
