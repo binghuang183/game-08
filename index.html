@@ -28,32 +28,39 @@ body{
 }
 
 /* 按钮统一优化排版 */
-.btn-group {
-  max-width: 320px;
-  margin: 0 auto 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* 按钮之间均匀间距 */
+.btn-group{
+  max-width:320px;
+  margin:0 auto 30px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
-
-.nav-btn,
-.newGame-btn,
-.service-btn,
-.buyGame-btn {
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-size: 15px;
-  font-weight: bold;
-  transition: all 0.2s ease;
+.btn-item{
+  padding:14px 20px;
+  border:none;
+  border-radius:14px;
+  font-size:15px;
+  font-weight:bold;
+  color:#fff;
+  cursor:pointer;
+  transition:all 0.2s ease;
+  text-align:center;
 }
-
-/* 鼠标放上去会上浮 */
-.nav-btn:hover,
-.newGame-btn:hover,
-.service-btn:hover,
-.buyGame-btn:hover {
+.btn-item:hover{
   transform: translateY(-2px);
+}
+
+.btn-game{
+  background:linear-gradient(90deg,#0066ff,#00a0ff);
+}
+.btn-new{
+  background:linear-gradient(90deg,#ff3c6e,#ff6b35);
+}
+.btn-service{
+  background:linear-gradient(90deg,#1a6dff,#004eff);
+}
+.btn-buy{
+  background:linear-gradient(90deg,#11c274,#08a060);
 }
 
 /* 目录按钮 */
