@@ -27,37 +27,46 @@ body{
   -webkit-text-fill-color:transparent;
 }
 
-/* 按钮统一优化排版 */
+/* 1. 按钮组容器：控制整体排版和间距 */
 .btn-group {
-  max-width:320px;
-  margin: 0 auto 30px;
+  max-width: 320px; /* 控制按钮最大宽度，手机上刚好适配 */
+  margin: 0 auto 30px; /* 整体居中，底部留30px空隙 */
   display: flex;
-  flex-direction: column;
-  gap:10px; /* 按钮之间均匀间距 */
+  flex-direction: column; /* 按钮垂直排列 */
+  gap: 10px; /* 🔥 关键：按钮之间的间距统一为10px */
 }
 
-.nav-btn,
-.newGame-btn,
-.service-btn,
-.buyGame-btn {
-  width: 100%;
-  padding: 14px 20px;
-  border:none;
-  border-radius:14px;
-  font-size:15px;
-  font-weight:bold;
-  color:#fff;
-  cursor:pointer;
-  transition:all 0.2s ease;
-  text-align:center;
+/* 2. 按钮通用样式：所有按钮的基础规则 */
+.btn-item {
+  width: 100%; /* 按钮宽度由父容器控制，保证统一 */
+  padding: 14px 20px; /* 上下14px、左右20px，控制按钮高度 */
+  border: none;
+  border-radius: 14px; /* 统一圆角，和你截图里的效果一致 */
+  font-size: 15px; /* 文字大小统一 */
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease; /* 过渡动画，让效果更丝滑 */
 }
 
-/* 鼠标放上去会上浮 */
-.nav-btn:hover,
-.newGame-btn:hover,
-.service-btn:hover,
-.buyGame-btn:hover {
-  transform: translateY(-2px);
+/* 3. 按钮悬停效果：鼠标放上去会上浮 */
+.btn-item:hover {
+  transform: translateY(-2px); /* 向上偏移2px，有立体感 */
+}
+
+/* 4. 每个按钮单独的渐变背景色（和你截图里的配色对应） */
+.btn-game {
+  background: linear-gradient(90deg, #0066ff, #00a0ff); /* 蓝色渐变：游戏目录 */
+}
+.btn-new {
+  background: linear-gradient(90deg, #ff3c6e, #ff6b35); /* 红橙渐变：最新更新 */
+}
+.btn-service {
+  background: linear-gradient(90deg, #1a6dff, #004eff); /* 深蓝色渐变：客服按钮 */
+}
+.btn-buy {
+  background: linear-gradient(90deg, #11c274, #08a060); /* 绿色渐变：购买按钮 */
 }
 
 /* 目录按钮 */
@@ -528,12 +537,12 @@ body{
 
 <h1 class="page-title">凯皇游戏</h1>
 
-<!-- 游戏目录按钮 -->
+<!-- 按钮组：套上父容器，就能自动对齐、控制间距 -->
 <div class="btn-group">
-<button class="nav-btn" onclick="openGameMenu()">游戏目录 | 搜索游戏</button>
-<button class="newGame-btn" onclick="openNewGameModal()">🎮 最新手游更新</button>
-<button class="service-btn" onclick="copyWechat()">复制微信 | 加客服开通后台</button>
-<button class="buyGame-btn" onclick="openBuyModal()">💰 立即购买 | 联系客服</button>
+  <button class="btn-item btn-game" onclick="openGameMenu()">🎮 游戏目录 | 搜索游戏</button>
+  <button class="btn-item btn-new" onclick="openNewGameModal()">🎮 最新手游更新</button>
+  <button class="btn-item btn-service" onclick="copyWechat()">💬 复制微信 | 加客服开通后台</button>
+  <button class="btn-item btn-buy" onclick="openBuyModal()">💰 立即购买 | 联系客服</button>
 </div>
 
 <!-- 购买游戏弹窗 -->
