@@ -4538,11 +4538,6 @@ games.forEach(g=>{
     </div>`;
   }
 
-  // 每 10 分钟自动刷新一次
-setInterval(() => {
-  window.location.reload();
-}, 600000);
-  
   // 版本说明
   if(g.info){
     html += `<div class="game-info">${g.info}</div>`;
