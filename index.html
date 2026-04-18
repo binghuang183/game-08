@@ -4139,40 +4139,40 @@ const games = [
   img: "https://i.postimg.cc/J0Hs97Fv/5cecac8f273ede08976fe69e5811734b.png"  
 },
   {
-  name: "游戏名称",
-  price: "售价：XX元",
-  packageUrl: "#",
+  name: "天使之城（正式服）",
+  price: "售价：68元爽玩套餐，1000元霸服套餐",
+  packageUrl: "https://www.kdocs.cn/l/clCYfgE8Xy4N",
   register: "#",        // 注册地址
   pc: "#",              // 电脑下载
   web: "#",             // 网页畅玩
-  android: "安卓链接",
+  android: "https://qudao.lihuoyouxi.com/t.html?spkey=GyCRHKE6N0Cd",
   android2: "#",
-  ios: "#",
+  ios: "https://qudao.lihuoyouxi.com/t.html?spkey=GyCRHKE6N0Cd",
   ios2: "#",
   superSign: "#",
   superBuy: "#",
   admin: "#",
   active: "#",
-  info: "说明",
-  img: "图片链接"
+  info: "PS：进游注册新账号，避免领取不到福利等问题，充值前切记，先找客服核对角色信息后再充值！客服才会帮你申请充值福利，具体可查看套餐，还可以定制无敌套餐，具体找客服！",
+  img: "https://i.postimg.cc/x8rSs0V6/b6527ff1ad2e4d3c4f073be0375ba7a4.png"
 },
   {
-  name: "游戏名称",
-  price: "售价：XX元",
-  packageUrl: "#",
+  name: "大战国",
+  price: "售价：98元爽玩套餐，1000元霸服套餐",
+  packageUrl: "https://www.kdocs.cn/l/cr0JJy6cZVaM",
   register: "#",        // 注册地址
   pc: "#",              // 电脑下载
   web: "#",             // 网页畅玩
-  android: "安卓链接",
+  android: "https://www.qianhuanshuzi.com/wap/game/luodi.aspx?id=176&cp=3810B30229428790",
   android2: "#",
-  ios: "#",
+  ios: "https://www.qianhuanshuzi.com/wap/game/luodi.aspx?id=176&cp=3810B30229428790",
   ios2: "#",
   superSign: "#",
   superBuy: "#",
   admin: "#",
   active: "#",
-  info: "说明",
-  img: "图片链接"
+  info: "PS：进游注册新账号，避免领取不到福利等问题，充值前切记，先找客服核对角色信息后再充值！客服才会帮你申请充值福利，具体可查看套餐，还可以定制无敌套餐，具体找客服！",
+  img: "https://i.postimg.cc/8Pt0c1nJ/c517fb3ace87d601816d83d1003dfd35.png"
 },
   {
   name: "游戏名称",
@@ -4538,16 +4538,16 @@ games.forEach(g=>{
     </div>`;
   }
 
-  // 每 3 分钟无感知更新游戏列表（不闪烁、不跳动）
-  setInterval(async () => {
+  // 每 3 分钟无感知更新游戏列表
+setInterval(async () => {
   try {
     const res = await fetch(location.href);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
     document.getElementById('gameList').innerHTML = doc.getElementById('gameList').innerHTML;
-  } catch (err) {}
-  }, 180000);
-
+  } catch (e) {}
+}, 180000);
+  
   // 版本说明
   if(g.info){
     html += `<div class="game-info">${g.info}</div>`;
