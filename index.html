@@ -4157,7 +4157,7 @@ const games = [
   img: "https://i.postimg.cc/x8rSs0V6/b6527ff1ad2e4d3c4f073be0375ba7a4.png"
 },
   {
-  name: "大战国",
+  name: "大战国（正式服）",
   price: "售价：98元爽玩套餐，1000元霸服套餐",
   packageUrl: "https://www.kdocs.cn/l/cr0JJy6cZVaM",
   register: "#",        // 注册地址
@@ -4175,40 +4175,40 @@ const games = [
   img: "https://i.postimg.cc/8Pt0c1nJ/c517fb3ace87d601816d83d1003dfd35.png"
 },
   {
-  name: "游戏名称",
-  price: "售价：XX元",
+  name: "刀剑演武（正式服）",
+  price: "售价：10元无限代金，98元买断后台",
   packageUrl: "#",
   register: "#",        // 注册地址
   pc: "#",              // 电脑下载
   web: "#",             // 网页畅玩
-  android: "安卓链接",
+  android: "https://load.95ok.top/game?ch=NjMxNGJyMzA2Mzhicg",
   android2: "#",
-  ios: "#",
+  ios: "https://load.95ok.top/game?ch=NjMxNGJyMzA2Mzhicg",
   ios2: "#",
   superSign: "#",
   superBuy: "#",
   admin: "#",
   active: "#",
-  info: "说明",
-  img: "图片链接"
+  info: "PS：进游注册新账号，避免领取不到福利等问题，充值前切记，先找客服核对角色信息后再充值！客服才会帮你申请充值福利",
+  img: "https://i.postimg.cc/fWjwH9k8/eb13cc4b4c571eb9f22828fba02f77e7.png"
 },
   {
-  name: "游戏名称",
-  price: "售价：XX元",
+  name: "领主（正式服）",
+  price: "售价：30元无限代金，198元买断后台",
   packageUrl: "#",
   register: "#",        // 注册地址
   pc: "#",              // 电脑下载
   web: "#",             // 网页畅玩
-  android: "安卓链接",
+  android: "https://0.1zheyx.com/game/1002760/61108.html",
   android2: "#",
-  ios: "#",
+  ios: "https://0.1zheyx.com/game/1002760/61108.html",
   ios2: "#",
   superSign: "#",
   superBuy: "#",
   admin: "#",
   active: "#",
-  info: "说明",
-  img: "图片链接"
+  info: "PS：进游注册新账号，避免领取不到福利等问题，充值前切记，先找客服核对角色信息后再充值！客服才会帮你申请充值福利",
+  img: "https://i.postimg.cc/BQnGM7r4/52ede440a9f939bd229444fbea67924e.png"
 },
   {
   name: "游戏名称",
@@ -4538,15 +4538,10 @@ games.forEach(g=>{
     </div>`;
   }
 
-  // 每 3 分钟无感知更新游戏列表
-setInterval(async () => {
-  try {
-    const res = await fetch(location.href);
-    const html = await res.text();
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-    document.getElementById('gameList').innerHTML = doc.getElementById('gameList').innerHTML;
-  } catch (e) {}
-}, 180000);
+  // 每 10 分钟自动刷新一次
+setInterval(() => {
+  window.location.reload();
+}, 600000);
   
   // 版本说明
   if(g.info){
