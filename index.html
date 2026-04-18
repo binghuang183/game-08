@@ -525,31 +525,6 @@ body{
 }
 .img-modal.show{display:flex;}
 html { scroll-behavior: smooth; }
-
-/* 👇 加载动画 CSS 就加在这里 👇 */
-.loading {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #fdfbf9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-}
-.soft-loader {
-  width: 50px;
-  height: 50px;
-  border: 3px solid #e8e4df;
-  border-top: 3px solid #b9a18f;
-  border-radius: 50%;
-  animation: softRotate 1.4s linear infinite;
-}
-@keyframes softRotate {
-  to { transform: rotate(360deg); }
-}
 </style>
 </head>
 
@@ -558,14 +533,8 @@ html { scroll-behavior: smooth; }
 <!-- 🔥 固定左上角：添加桌面图标按钮 -->
 <button class="addHome-btn" onclick="showAddTip()">📲 添加桌面</button>
 
-<!-- 👇 就加在这里 👇 -->
-<div class="loading" id="loading">
-  <div class="soft-loader"></div>
-</div>
-
 <!-- 下面是你原来的内容 -->
 <button class="backTop" id="backTop">⬆️</button>
-...
 
 <!-- ========== 返回顶部按钮（新加） ========== -->
 <button class="backTop" onclick="goToTop()" id="backTop">⬆️</button>
@@ -4391,13 +4360,6 @@ games.forEach(g=>{
       <button class="btn-download img" onclick="openImg('${g.img}')">游戏截图</button>
     </div>`;
   }
-
-// 👇 加载动画 JS 加在这里 👇
-window.addEventListener('load', function () {
-  setTimeout(() => {
-    document.getElementById('loading').style.display = 'none';
-  }, 600);
-});
 
   // 版本说明
   if(g.info){
