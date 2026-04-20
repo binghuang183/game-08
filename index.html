@@ -27,49 +27,44 @@ body{
   -webkit-text-fill-color:transparent;
 }
 
-/* 1. 按钮组容器：控制整体排版和间距 */
 .btn-group {
-  max-width: 320px; /* 控制按钮最大宽度，手机上刚好适配 */
-  margin: 0 auto 30px; /* 整体居中，底部留30px空隙 */
+  max-width: 320px;
+  margin: 0 auto 30px;
   display: flex;
-  flex-direction: column; /* 按钮垂直排列 */
-  gap: 10px; /* 🔥 关键：按钮之间的间距统一为10px */
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* 2. 按钮通用样式：所有按钮的基础规则 */
 .btn-item {
-  width: 100%; /* 按钮宽度由父容器控制，保证统一 */
-  padding: 14px 20px; /* 上下14px、左右20px，控制按钮高度 */
+  width: 100%;
+  padding: 14px 20px;
   border: none;
-  border-radius: 14px; /* 统一圆角，和你截图里的效果一致 */
-  font-size: 15px; /* 文字大小统一 */
+  border-radius: 14px;
+  font-size: 15px;
   font-weight: bold;
   color: #fff;
   cursor: pointer;
   text-align: center;
-  transition: all 0.2s ease; /* 过渡动画，让效果更丝滑 */
+  transition: all 0.2s ease;
 }
 
-/* 3. 按钮悬停效果：鼠标放上去会上浮 */
 .btn-item:hover {
-  transform: translateY(-2px); /* 向上偏移2px，有立体感 */
+  transform: translateY(-2px);
 }
 
-/* 4. 每个按钮单独的渐变背景色（和你截图里的配色对应） */
 .btn-game {
-  background: linear-gradient(90deg, #0066ff, #00a0ff); /* 蓝色渐变：游戏目录 */
+  background: linear-gradient(90deg, #0066ff, #00a0ff);
 }
 .btn-new {
-  background: linear-gradient(90deg, #ff3c6e, #ff6b35); /* 红橙渐变：最新更新 */
+  background: linear-gradient(90deg, #ff3c6e, #ff6b35);
 }
 .btn-service {
-  background: linear-gradient(90deg, #1a6dff, #004eff); /* 深蓝色渐变：客服按钮 */
+  background: linear-gradient(90deg, #1a6dff, #004eff);
 }
 .btn-buy {
-  background: linear-gradient(90deg, #11c274, #08a060); /* 绿色渐变：购买按钮 */
+  background: linear-gradient(90deg, #11c274, #08a060);
 }
 
-/* 目录按钮 */
 .nav-btn{
   display:block;
   margin:10px auto 20px;
@@ -83,7 +78,6 @@ body{
   cursor:pointer;
 }
 
-/* 最新手游更新按钮 */
 .newGame-btn{
   display:block;
   margin:10px auto 20px;
@@ -96,7 +90,6 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
-/* 最新游戏弹窗 */
 .newGameModal{
   position:fixed;
   top:0;left:0;
@@ -148,7 +141,6 @@ body{
   text-align:center;
 }
 
-/* 游戏目录弹窗 */
 .menu-modal{
   position:fixed;
   top:0;left:0;
@@ -179,7 +171,6 @@ body{
   margin-bottom:20px;
   color:#222;
 }
-  /* 搜索框 */
 .search-input{
   width:100%;
   padding:10px 14px;
@@ -225,20 +216,7 @@ body{
   box-shadow: 0 5px 15px rgba(26,109,255,0.3);
 }
 
-/* 购买游戏按钮 */
-.buyGame-btn{
-  display:block;
-  margin:10px auto 30px;
-  padding:12px 25px;
-  background:linear-gradient(90deg, #11c274, #08a060);
-  color:#fff;
-  border:none;
-  border-radius:12px;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-}
-/* 购买游戏弹窗 */
+/* 购买弹窗样式 */
 .buyModal{
   position:fixed;
   top:0;left:0;
@@ -255,12 +233,23 @@ body{
 }
 .buyBox{
   background:#fff;
-  max-width:400px;
+  max-width:700px;
   width:100%;
   border-radius:16px;
   padding:25px;
   max-height:80vh;
   overflow-y:auto;
+  display:flex;
+  gap:20px;
+}
+.buyLeft{
+  width:50%;
+}
+.buyRight{
+  width:50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .buyTitle{
   font-size:20px;
@@ -269,7 +258,6 @@ body{
   margin-bottom:15px;
   color:#222;
 }
-/* 购买搜索框 */
 .buySearch{
   width:100%;
   padding:10px 14px;
@@ -302,7 +290,9 @@ body{
   margin-top:4px;
   text-align:center;
 }
-.customPayBtn{
+
+/* 自定义金额 */
+.custom-btn{
   width:100%;
   padding:14px;
   background:linear-gradient(90deg,#ff6b35,#ff451a);
@@ -310,11 +300,46 @@ body{
   border:none;
   border-radius:10px;
   font-weight:bold;
-  margin-top:15px;
+  cursor:pointer;
+  margin-bottom:12px;
+}
+.money-box{
+  display:none;
+  margin-bottom:12px;
+}
+.money-input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+  outline:none;
+  text-align:center;
+}
+
+/* 支付按钮 */
+.pay-wx{
+  width:100%;
+  padding:14px;
+  background:linear-gradient(90deg,#07c160,#08a060);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+.pay-zfb{
+  width:100%;
+  padding:14px;
+  background:linear-gradient(90deg,#1677ff,#0059cc);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
   cursor:pointer;
 }
 
-/* 固定左上角：添加到桌面按钮 */
 .addHome-btn{
   position: static;
   top: 15px;
@@ -331,7 +356,6 @@ body{
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* 添加到桌面弹窗 */
 .addModal{
   position:fixed;
   top:0;left:0;
@@ -378,7 +402,6 @@ body{
   font-weight:bold;
 }
 
-/* ========== 返回顶部悬浮按钮（新加） ========== */
 .backTop{
   position: fixed;
   bottom: 30px;
@@ -393,7 +416,7 @@ body{
   box-shadow: 0 4px 12px rgba(0,100,255,0.2);
   cursor: pointer;
   z-index: 999;
-  display: none; /* 默认隐藏 */
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -497,11 +520,9 @@ body{
 .btn-download.pc{
   background:linear-gradient(90deg, #6a11cb, #2575fc);
 }
-/* 网页畅玩按钮 */
 .btn-download.web{
   background:linear-gradient(90deg, #17a2b8, #20c997);
 }
-/* 查看套餐按钮（跳转网页版） */
 .btn-download.package {
   background:linear-gradient(90deg, #ff6b9d, #c44569);
 }
@@ -530,15 +551,11 @@ html { scroll-behavior: smooth; }
 
 <body>
 
-<!-- 🔥 固定左上角：添加桌面图标按钮 -->
 <button class="addHome-btn" onclick="showAddTip()">📲 添加桌面</button>
-
-<!-- ========== 返回顶部按钮（新加） ========== -->
 <button class="backTop" onclick="goToTop()" id="backTop">🚀</button>
 
 <h1 class="page-title">凯皇游戏</h1>
 
-<!-- 按钮组：套上父容器，就能自动对齐、控制间距 -->
 <div class="btn-group">
   <button class="btn-item btn-game" onclick="openGameMenu()">🎮 游戏目录 | 搜索游戏</button>
   <button class="btn-item btn-new" onclick="openNewGameModal()">🎮 最新手游更新</button>
@@ -546,18 +563,30 @@ html { scroll-behavior: smooth; }
   <button class="btn-item btn-buy" onclick="openBuyModal()">💰 立即购买 | 联系客服</button>
 </div>
 
-<!-- 购买游戏弹窗 -->
+<!-- 购买弹窗 -->
 <div class="buyModal" id="buyModal" onclick="closeBuyModal()">
   <div class="buyBox" onclick="event.stopPropagation()">
-    <div class="buyTitle">选择游戏购买</div>
-    <!-- 搜索框 -->
-    <input type="text" class="buySearch" id="buySearch" placeholder="搜索购买游戏..." oninput="searchBuyGame()">
-    <div id="buyList"></div>
-    <button class="customPayBtn" onclick="goToCustomPay()">💰 自定义金额付款</button>
+    <div class="buyLeft">
+      <div class="buyTitle">选择游戏购买</div>
+      <input type="text" class="buySearch" id="buySearch" placeholder="搜索购买游戏..." oninput="searchBuyGame()">
+      <div id="buyList"></div>
+    </div>
+    <div class="buyRight">
+      <div class="buyTitle">支付方式</div>
+      
+      <button class="custom-btn" onclick="toggleMoney()">💳 自定义金额</button>
+      
+      <div class="money-box" id="moneyBox">
+        <input type="number" class="money-input" id="payMoney" placeholder="请输入支付金额">
+      </div>
+      
+      <button class="pay-wx" onclick="payWechat()">💸 微信支付</button>
+      <button class="pay-zfb" onclick="payAlipay()">💰 支付宝支付</button>
+    </div>
   </div>
 </div>
 
-<!-- 游戏目录弹窗 -->
+<!-- 游戏目录 -->
 <div class="menu-modal" id="gameMenuModal" onclick="closeGameMenu()">
   <div class="menu-box" onclick="event.stopPropagation()">
     <div class="menu-title">游戏列表</div>
@@ -566,7 +595,7 @@ html { scroll-behavior: smooth; }
   </div>
 </div>
 
-<!-- 最新手游弹窗 -->
+<!-- 最新游戏 -->
 <div class="newGameModal" id="newGameModal" onclick="closeNewGameModal()">
   <div class="newGameBox" onclick="event.stopPropagation()">
     <div class="newGameTitle">🔥 最新手游上新</div>
@@ -574,20 +603,19 @@ html { scroll-behavior: smooth; }
   </div>
 </div>
 
-<!-- 添加到桌面指引弹窗 -->
+<!-- 添加桌面 -->
 <div class="addModal" id="addModal" onclick="closeAddModal()">
   <div class="addBox" onclick="event.stopPropagation()">
     <div class="addTitle">添加到桌面</div>
     <div class="addTip">1. 点击浏览器右上角【…】或者【分享】按钮</div>
     <div class="addTip">2. 选择【添加到桌面】或【添加到主屏幕】</div>
     <div class="addTip">3. 点击添加，桌面就会出现快捷图标啦！</div>
-    <div class="addTip">4. 为方便您后续快速访问，建议将本页面添加至浏览器书签栏或收藏夹！</div>
+    <div class="addTip">4. 为方便您后续快速访问，建议将本页面添加至浏览器书签或收藏夹！</div>
     <button class="closeAdd" onclick="closeAddModal()">我知道了</button>
   </div>
 </div>
 
 <div class="container" id="gameList"></div>
-
 <div class="img-modal" id="imgModal" onclick="closeImg()">
   <img src="" id="bigImg">
 </div>
@@ -595,6 +623,11 @@ html { scroll-behavior: smooth; }
 <script>
 const wechatId = "khyouxi66";
 
+// 支付链接（你自己改这里）
+const WX_PAY_URL = "#";
+const ZFB_PAY_URL = "#";
+
+// 游戏数据
 const games = [
   {
     name: "斗罗大陆6SSP",
@@ -4032,390 +4065,70 @@ const games = [
 }
 ];
 
-// ==============================
-// 最新上新游戏列表
-// ==============================
+// 最新游戏
 const newGames = [
   { name: "斗罗大陆6SSP", time: "2026-04-16", index: 0 },
   { name: "枫叶岛冒险岛H5", time: "2026-04-16", index: 1 },
 ];
 
-// 打开最新游戏弹窗
-function openNewGameModal(){
-  document.getElementById('newGameModal').classList.add('show');
-  renderNewGameList();
-}
-// 关闭
-function closeNewGameModal(){
-  document.getElementById('newGameModal').classList.remove('show');
-}
-
-// 渲染最新游戏列表
-function renderNewGameList(){
-  const box = document.getElementById('newGameList');
-  box.innerHTML = '';
-  newGames.forEach(item=>{
-    box.innerHTML += `
-      <div class="newGameItem" onclick="goToNewGame(${item.index})">
-        ${item.name}
-        <div class="time">${item.time}</div>
-      </div>
-    `;
-  });
-}
-
-// 跳转到对应游戏
-function goToNewGame(index){
-  closeNewGameModal();
-  const cards = document.querySelectorAll('.game-card');
-  cards[index].scrollIntoView({ behavior:'smooth' });
-}
-
-// 打开游戏目录
-function openGameMenu(){
-  document.getElementById('gameMenuModal').classList.add('show');
-}
-// 关闭游戏目录
-function closeGameMenu(){
-  document.getElementById('gameMenuModal').classList.remove('show');
-}
-// 跳转到游戏
-function goToGame(index){
-  closeGameMenu();
-  const cards = document.querySelectorAll('.game-card');
-  cards[index].scrollIntoView({ behavior:'smooth' });
-}
-
-// 渲染菜单（支持搜索）
-function renderMenu(filterText = ''){
-  const menuList = document.getElementById('gameMenuList');
-  menuList.innerHTML = '';
-  games.forEach((g,i)=>{
-    if(g.name.includes(filterText)){
-      menuList.innerHTML += `<div class="menu-item" onclick="goToGame(${i})">${g.name}</div>`;
-    }
-  });
-}
-renderMenu();
-
-// 搜索游戏
-function searchGame(){
-  const txt = document.getElementById('gameSearch').value.trim();
-  renderMenu(txt);
-}
-
-// 显示添加桌面指引
-function showAddTip(){
-  document.getElementById('addModal').classList.add('show');
-}
-function closeAddModal(){
-  document.getElementById('addModal').classList.remove('show');
-}
-
-// ========== 返回顶部功能（新加） ==========
-function goToTop(){
-  window.scrollTo({ top:0, behavior:'smooth' });
-}
-// 滑动显示/隐藏按钮
-window.onscroll = function(){
-  const btn = document.getElementById('backTop');
-  if(window.scrollY > 200){
-    btn.classList.add('show');
-  }else{
-    btn.classList.remove('show');
-  }
-}
-
-// ================== 购买游戏配置（自己改这里）==================
+// 购买游戏列表（以后加游戏只改这里！）
 const buyGames = [
-  {
-    name: "斗罗大陆6SSP",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "枫叶岛冒险岛H5",
-    price: "388元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "枫叶岛冒险岛H5",
-    price: "588元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "九州江湖情（内购+后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "九州江湖情（内购+后台）",
-    price: "688元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "口袋大冒险",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "死神虚域（内购+后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "波利冒险记-圣典英雄（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "幻灵大冒险（物品后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "幻灵大冒险（物品后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "疾风之刃（物品后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "三国兵临天下同官神圣功能版H5",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "冰雪大作战（物品后台）独家多人对战",
-    price: "68元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "梦幻诛仙15职业（物品后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "元素精灵（内购+后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "元素精灵（内购+后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "忍者必须死3（物品后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "忍者必须死3（物品后台）",
-    price: "388元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "刀锋战记2：邪恶回归",
-    price: "388元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "刀锋战记2：邪恶回归",
-    price: "588元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "诛魔录（内购+后台）",
-    price: "128元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "青丘狐传说（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "青丘狐传说（物品后台）",
-    price: "388元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "光明世纪-荣耀殿堂（物品后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "光明世纪-荣耀殿堂（物品后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "斗罗大陆2绝世唐门（物品后台）",
-    price: "388元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "斗罗大陆2绝世唐门（物品后台）",
-    price: "588元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "神龙复古天玺996三职业",
-    price: "28元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "魔域觉醒-幻兽归来（物品后台）",
-    price: "售价：28元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "植物大战僵尸竖版H5-植物萌斗（物品后台）",
-    price: "38元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "逍遥志（内购+后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "奇迹大天使之战（物品后台）",
-    price: "388元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "奇迹大天使之战（物品后台）",
-    price: "688元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "仙逆H5（物品后台）",
-    price: "68元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "闪烁之光同步版（内购+后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "天穹西游（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "黑夜西游（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "夜听西游（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "新次元乱斗20sp（内购+后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "新版家园卫士（物品后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "新版家园卫士（物品后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "飞吧龙骑士（内购+后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "飞吧龙骑士（内购+后台）",
-    price: "288元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "少女回战同官服（内购+后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "少女回战同官服（内购+后台）",
-    price: "688元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "逐日战神H5（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "天使纪元（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "小鸡舰队出击（内购+后台）",
-    price: "488元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "小鸡舰队出击（内购+后台）",
-    price: "688元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "口袋觉醒同步官服版",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "全民学霸H5（内购+后台）",
-    price: "28元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "全民学霸H5（内购+后台）",
-    price: "88元",
-    payUrl: "https://你的付款链接"
-  },
-  {
-    name: "原神5.0（物品后台）",
-    price: "188元",
-    payUrl: "https://你的付款链接"
-  }
+  { name: "斗罗大陆6SSP", price: "188元" },
+  { name: "枫叶岛冒险岛H5", price: "388元" },
+  { name: "枫叶岛冒险岛H5", price: "588元" },
+  { name: "九州江湖情", price: "488元" },
+  { name: "九州江湖情", price: "688元" },
+  { name: "口袋大冒险", price: "188元" },
+  { name: "死神虚域", price: "188元" },
 ];
 
-// 自定义金额付款链接
-const customPayUrl = "https://你的自定义付款链接";
+let selectedGame = null;
 
-// ================== 功能代码 ==================
-function openBuyModal(){
-  document.getElementById('buyModal').classList.add('show');
-  renderBuyList();
+// 切换金额框
+function toggleMoney(){
+  const box = document.getElementById('moneyBox');
+  box.style.display = box.style.display === 'block' ? 'none' : 'block';
 }
 
+// 支付
+function payWechat(){
+  if(!selectedGame){
+    alert("请先选择左侧游戏");
+    return;
+  }
+  const money = document.getElementById('payMoney').value.trim();
+  let url = WX_PAY_URL;
+  if(money) url += "?money=" + money;
+  window.open(url, '_blank');
+}
+
+function payAlipay(){
+  if(!selectedGame){
+    alert("请先选择左侧游戏");
+    return;
+  }
+  const money = document.getElementById('payMoney').value.trim();
+  let url = ZFB_PAY_URL;
+  if(money) url += "?money=" + money;
+  window.open(url, '_blank');
+}
+
+// 购买弹窗
+function openBuyModal(){
+  document.getElementById('buyModal').classList.add('show');
+  renderBuy();
+}
 function closeBuyModal(){
   document.getElementById('buyModal').classList.remove('show');
 }
 
-// 渲染购买列表（支持搜索）
-function renderBuyList(filterText = ''){
-  const box = document.getElementById('buyList');
-  box.innerHTML = '';
-  buyGames.forEach(g=>{
-    if(g.name.includes(filterText)){
-      box.innerHTML += `
-        <div class="buyItem" onclick="goToPay('${g.payUrl}')">
+function renderBuy(keyword=''){
+  const list = document.getElementById('buyList');
+  list.innerHTML = '';
+  buyGames.forEach((g,i)=>{
+    if(g.name.includes(keyword)){
+      list.innerHTML += `
+        <div class="buyItem" onclick="chooseGame(${i})">
           ${g.name}
           <div class="buyPrice">${g.price}</div>
         </div>
@@ -4424,185 +4137,147 @@ function renderBuyList(filterText = ''){
   });
 }
 
-// 搜索购买游戏
+function chooseGame(idx){
+  selectedGame = idx;
+  alert("已选择："+buyGames[idx].name);
+}
+
 function searchBuyGame(){
-  const txt = document.getElementById('buySearch').value.trim();
-  renderBuyList(txt);
+  const key = document.getElementById('buySearch').value.trim();
+  renderBuy(key);
 }
 
-// 跳转付款
-function goToPay(url){
-  window.open(url, '_blank');
+// 最新游戏
+function openNewGameModal(){
+  document.getElementById('newGameModal').classList.add('show');
+  renderNew();
+}
+function closeNewGameModal(){
+  document.getElementById('newGameModal').classList.remove('show');
+}
+function renderNew(){
+  const box = document.getElementById('newGameList');
+  box.innerHTML = '';
+  newGames.forEach(g=>{
+    box.innerHTML += `
+      <div class="newGameItem" onclick="goToGame(${g.index})">
+        ${g.name}
+        <div class="time">${g.time}</div>
+      </div>
+    `;
+  });
 }
 
-// 自定义金额
-function goToCustomPay(){
-  window.open(customPayUrl, '_blank');
+// 游戏目录
+function openGameMenu(){
+  document.getElementById('gameMenuModal').classList.add('show');
+  renderMenu();
+}
+function closeGameMenu(){
+  document.getElementById('gameMenuModal').classList.remove('show');
+}
+function renderMenu(key=''){
+  const list = document.getElementById('gameMenuList');
+  list.innerHTML = '';
+  games.forEach((g,i)=>{
+    if(g.name.includes(key)){
+      list.innerHTML += `<div class="menu-item" onclick="goToGame(${i})">${g.name}</div>`;
+    }
+  });
+}
+function searchGame(){
+  const key = document.getElementById('gameSearch').value.trim();
+  renderMenu(key);
+}
+function goToGame(i){
+  closeGameMenu();
+  document.querySelectorAll('.game-card')[i].scrollIntoView({behavior:'smooth'});
 }
 
-// 复制微信
+// 桌面
+function showAddTip(){
+  document.getElementById('addModal').classList.add('show');
+}
+function closeAddModal(){
+  document.getElementById('addModal').classList.remove('show');
+}
+
+// 返回顶部
+function goToTop(){
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.onscroll = function(){
+  const btn = document.getElementById('backTop');
+  btn.classList.toggle('show', window.scrollY>200);
+}
+
+// 复制
 function copyWechat(){
-  navigator.clipboard.writeText(wechatId).then(()=>{
-    alert("微信客服复制成功！");
-  }).catch(()=>{
-    alert("复制失败，请手动复制："+wechatId);
-  })
+  navigator.clipboard.writeText(wechatId).then(()=>alert("微信复制成功！")).catch(()=>alert("复制失败"));
+}
+function copyLink(t){
+  navigator.clipboard.writeText(t).then(()=>alert("链接复制成功！")).catch(()=>alert("复制失败"));
 }
 
-// 复制链接
-function copyLink(text){
-  navigator.clipboard.writeText(text).then(()=>{
-    alert("链接复制成功！");
-  }).catch(()=>{
-    alert("复制失败，请手动复制："+text);
-  })
-}
-
-// 图片预览
-function openImg(src){
-  const m = document.getElementById('imgModal');
-  const i = document.getElementById('bigImg');
-  i.src = src;
-  m.classList.add('show');
+// 图片
+function openImg(s){
+  document.getElementById('bigImg').src = s;
+  document.getElementById('imgModal').classList.add('show');
 }
 function closeImg(){
   document.getElementById('imgModal').classList.remove('show');
 }
 
-// 渲染
+// 渲染游戏
 const container = document.getElementById('gameList');
 games.forEach(g=>{
-  const card = document.createElement('div');
+  let card = document.createElement('div');
   card.className = 'game-card';
-  let html = '';
+  let html = `<div class="game-name">${g.name}</div>`;
+  if(g.price) html += `<div class="game-price">${g.price}</div>`;
 
-  html += `<div class="game-name">${g.name}</div>`;
-
-  if(g.price){
-    html += `<div class="game-price">${g.price}</div>`;
+  if(g.register && g.register!='#'){
+    html+=`<div class="btn-row"><button class="btn-download register" onclick="window.open('${g.register}','_blank')">注册地址</button><button class="btn-copy" onclick="copyLink('${g.register}')">复制</button></div>`;
+  }
+  if(g.pc && g.pc!='#'){
+    html+=`<div class="btn-row"><button class="btn-download pc" onclick="window.open('${g.pc}','_blank')">电脑下载</button><button class="btn-copy" onclick="copyLink('${g.pc}')">复制</button></div>`;
+  }
+  if(g.web && g.web!='#'){
+    html+=`<div class="btn-row"><button class="btn-download web" onclick="window.open('${g.web}','_blank')">网页畅玩</button><button class="btn-copy" onclick="copyLink('${g.web}')">复制</button></div>`;
   }
 
-  // 注册地址
-  if(g.register && g.register !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download register" onclick="window.open('${g.register}','_blank')">注册地址</button>
-      <button class="btn-copy" onclick="copyLink('${g.register}')">复制</button>
-    </div>`;
+  html+=`<div class="btn-row"><button class="btn-download android" onclick="window.open('${g.android}','_blank')">安卓下载</button><button class="btn-copy" onclick="copyLink('${g.android}')">复制</button></div>`;
+  if(g.android2 && g.android2!='#'){
+    html+=`<div class="btn-row"><button class="btn-download android" onclick="window.open('${g.android2}','_blank')">安卓下载2</button><button class="btn-copy" onclick="copyLink('${g.android2}')">复制</button></div>`;
   }
-
-  // 电脑下载
-  if(g.pc && g.pc !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download pc" onclick="window.open('${g.pc}','_blank')">电脑下载</button>
-      <button class="btn-copy" onclick="copyLink('${g.pc}')">复制</button>
-    </div>`;
+  if(g.ios && g.ios!='#'){
+    html+=`<div class="btn-row"><button class="btn-download ios" onclick="window.open('${g.ios}','_blank')">苹果下载</button><button class="btn-copy" onclick="copyLink('${g.ios}')">复制</button></div>`;
   }
-  
-  // 网页畅玩 👈 新加按钮
-  if(g.web && g.web !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download web" onclick="window.open('${g.web}','_blank')">网页畅玩</button>
-      <button class="btn-copy" onclick="copyLink('${g.web}')">复制</button>
-    </div>`;
+  if(g.ios2 && g.ios2!='#'){
+    html+=`<div class="btn-row"><button class="btn-download ios" onclick="window.open('${g.ios2}','_blank')">苹果下载2</button><button class="btn-copy" onclick="copyLink('${g.ios2}')">复制</button></div>`;
   }
-
-  // 安卓1
-  html += `
-  <div class="btn-row">
-    <button class="btn-download android" onclick="window.open('${g.android}','_blank')">安卓下载</button>
-    <button class="btn-copy" onclick="copyLink('${g.android}')">复制</button>
-  </div>`;
-
-  // 安卓2
-  if(g.android2 && g.android2 !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download android" onclick="window.open('${g.android2}','_blank')">安卓下载2</button>
-      <button class="btn-copy" onclick="copyLink('${g.android2}')">复制</button>
-    </div>`;
+  if(g.superSign && g.superSign!='#'){
+    html+=`<div class="btn-row"><button class="btn-download supersign" onclick="window.open('${g.superSign}','_blank')">苹果超级签</button><button class="btn-copy" onclick="copyLink('${g.superSign}')">复制</button></div>`;
   }
-
-  // 苹果1
-  if(g.ios && g.ios !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download ios" onclick="window.open('${g.ios}','_blank')">苹果下载</button>
-      <button class="btn-copy" onclick="copyLink('${g.ios}')">复制</button>
-    </div>`;
+  if(g.superBuy && g.superBuy!='#'){
+    html+=`<div class="btn-row"><button class="btn-download buy" onclick="window.open('${g.superBuy}','_blank')">超级签购买</button><button class="btn-copy" onclick="copyLink('${g.superBuy}')">复制</button></div>`;
   }
-
-  // 苹果2
-  if(g.ios2 && g.ios2 !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download ios" onclick="window.open('${g.ios2}','_blank')">苹果下载2</button>
-      <button class="btn-copy" onclick="copyLink('${g.ios2}')">复制</button>
-    </div>`;
+  if(g.admin && g.admin!='#'){
+    html+=`<div class="btn-row"><button class="btn-download admin" onclick="window.open('${g.admin}','_blank')">后台地址</button><button class="btn-copy" onclick="copyLink('${g.admin}')">复制</button></div>`;
   }
-
-  // 苹果超级签
-  if(g.superSign && g.superSign !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download supersign" onclick="window.open('${g.superSign}','_blank')">苹果超级签</button>
-      <button class="btn-copy" onclick="copyLink('${g.superSign}')">复制</button>
-    </div>`;
+  if(g.active && g.active!='#'){
+    html+=`<div class="btn-row"><button class="btn-download active" onclick="window.open('${g.active}','_blank')">激活后台</button><button class="btn-copy" onclick="copyLink('${g.active}')">复制</button></div>`;
   }
-
-  // 超级签购买
-  if(g.superBuy && g.superBuy !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download buy" onclick="window.open('${g.superBuy}','_blank')">超级签购买</button>
-      <button class="btn-copy" onclick="copyLink('${g.superBuy}')">复制</button>
-    </div>`;
-  }
-
-  // 后台地址
-  if(g.admin && g.admin !== '#'){
-  html += `
-  <div class="btn-row">
-    <button class="btn-download admin" onclick="window.open('${g.admin}','_blank')">后台地址</button>
-    <button class="btn-copy" onclick="copyLink('${g.admin}')">复制</button>
-  </div>`;
-  }
-
-  // 激活后台
-  if(g.active && g.active !== '#'){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download active" onclick="window.open('${g.active}','_blank')">激活后台</button>
-      <button class="btn-copy" onclick="copyLink('${g.active}')">复制</button>
-    </div>`;
-  }
-
-  // 查看套餐（跳转网页）
-  if(g.packageUrl && g.packageUrl !== "#"){
-  html += `
-  <div class="btn-row">
-    <button class="btn-download package" onclick="window.open('${g.packageUrl}','_blank')">查看套餐</button>
-  </div>`;
-  }
-
-  // 游戏截图
   if(g.img){
-    html += `
-    <div class="btn-row">
-      <button class="btn-download img" onclick="openImg('${g.img}')">游戏截图</button>
-    </div>`;
+    html+=`<div class="btn-row"><button class="btn-download img" onclick="openImg('${g.img}')">游戏截图</button></div>`;
   }
-
-  // 版本说明
   if(g.info){
-    html += `<div class="game-info">${g.info}</div>`;
+    html+=`<div class="game-info">${g.info}</div>`;
   }
-
   card.innerHTML = html;
   container.appendChild(card);
-})
+});
 </script>
 </body>
 </html>
+   
