@@ -578,6 +578,26 @@ body {
   user-select: none;
   -webkit-user-select: none;
 }
+.roll-text {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  background: #fff3cd;
+  color: #c00;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 6px 0;
+  margin-top: 8px;
+  line-height: 1.2;
+}
+.roll-text span {
+  display: inline-block;
+  animation: scrollMove 12s linear infinite;
+}
+@keyframes scrollMove {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
 </style>
 </head>
 
@@ -593,6 +613,11 @@ body {
   <button class="btn-item btn-new" onclick="openNewGameModal()">🔥 388元游戏会员大礼包（一码通玩）</button>
   <button class="btn-item btn-service" onclick="copyWechat()">💬 复制微信 | 加客服开通后台</button>
   <button class="btn-item btn-buy" onclick="openBuyModal()">💰 立即购买 | 联系客服</button>
+
+<div class="roll-text">
+  <span>欢迎选购本店游戏｜售后稳定｜全天在线答疑｜拒绝跑路｜2026年4月26日已更新游戏｜刷新页面目录查看</span>
+</div>
+  
 </div>
 
 <div class="buyModal" id="buyModal" onclick="closeBuyModal()">
