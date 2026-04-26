@@ -5603,16 +5603,13 @@ function openNewGameModal(){
 function closeNewGameModal(){
   document.getElementById('newGameModal').classList.remove('show');
 }
-function renderNew(){
-  let b = document.getElementById('newList');
-  b.innerHTML='';
+function renderNewGameList(){
+  const list = document.getElementById('newGameList');
+  list.innerHTML = '';
   newGames.forEach(g=>{
-    // 根据你填的num，自动获取真实跳转下标
-    let realIndex = getGameIdxByNum(g.num);
-    b.innerHTML+=`
-    <div class="new-item" onclick="go(${realIndex})">
-      ${g.name}<div class="time">${g.time}</div>
-    </div>`;
+    // 重点就是这一行！！
+    const realIndex = games.findIndex(item => item.num === g.num);
+    list.innerHTML += `<div class="newGameItem" onclick="goToGame(${realIndex})">${g.name}<div class="time">${g.time}</div></div>`;
   });
 }
 // 根据你写的数字，自动匹配游戏下标
@@ -5683,10 +5680,10 @@ function closeImg(){
 
 // 渲染游戏
 const container = document.getElementById('gameList');
-games.forEach(g=>{
+games.forEach((g, i)=>{
   let card = document.createElement('div');
   card.className = 'game-card';
-  d.id = 'gameCard' + i; // 给每个卡片加唯一ID（关键修复）
+  card.id = 'gameCard' + i;// 给每个卡片加唯一ID（关键修复）
   let html = `<div class="game-name">${g.name}</div>`;
   if(g.price) html += `<div class="game-price">${g.price}</div>`;
 
@@ -5738,10 +5735,6 @@ games.forEach(g=>{
   card.innerHTML = html;
   container.appendChild(card);
 });
-// 关闭无用触摸事件监听，减少占用
-document.addEventListener('touchstart', function(){}, {passive:true});
-// 防止浏览器自动放大、抖动
-window.addEventListener('resize', () => {}, {passive:true});
 </script>
 </body>
 </html>
