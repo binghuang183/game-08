@@ -239,7 +239,6 @@ body{
   box-shadow: 0 5px 15px rgba(26,109,255,0.3);
 }
 
-/* 购买弹窗样式 */
 .buyModal{
   position:fixed;
   top:0;left:0;
@@ -318,7 +317,6 @@ body{
   text-align:center;
 }
 
-/* 自定义金额 */
 .custom-btn{
   width:100%;
   padding:14px;
@@ -345,7 +343,6 @@ body{
   text-align:center;
 }
 
-/* 支付按钮 */
 .pay-wx{
   width:100%;
   padding:14px;
@@ -518,7 +515,6 @@ body{
   transition: all 0.15s ease;
   will-change: transform;
 }
-/* 安卓：恢复原来蓝色 */
 .btn-download.android{
   background:linear-gradient(90deg,#0066ff,#00a0ff);
 }
@@ -572,24 +568,16 @@ body{
   max-width:100%;max-height:90vh;border-radius:10px;
 }
 .img-modal.show{display:flex;}
-// 全局滑动、点击顺滑优化
-document.documentElement.style.touchAction = 'manipulation';
 img {
   max-width: 100%;
   display: block;
-  /* 图片硬件加速、顺滑渲染 */
   backface-visibility: hidden;
-  /* 防止图片拖动卡顿 */
   pointer-events: auto;
   user-select: none;
 }
 body {
   user-select: none;
   -webkit-user-select: none;
-}
-.backTop, .newGameModal, .menu-modal, .buyModal, .addModal {
-  transform: translateZ(0);
-  will-change: opacity;
 }
 </style>
 </head>
@@ -603,12 +591,11 @@ body {
 
 <div class="btn-group">
   <button class="btn-item btn-game" onclick="openGameMenu()">🎮 游戏目录 | 搜索游戏</button>
-  <button class="btn-item btn-new" onclick="openNewGameModal()">🎮 388元游戏会员大礼包（一码通玩）</button>
+  <button class="btn-item btn-new" onclick="openNewGameModal()">🔥 最新手游上新</button>
   <button class="btn-item btn-service" onclick="copyWechat()">💬 复制微信 | 加客服开通后台</button>
   <button class="btn-item btn-buy" onclick="openBuyModal()">💰 立即购买 | 联系客服</button>
 </div>
 
-<!-- 购买弹窗 -->
 <div class="buyModal" id="buyModal" onclick="closeBuyModal()">
   <div class="buyBox" onclick="event.stopPropagation()">
     <div class="buyLeft">
@@ -618,20 +605,16 @@ body {
     </div>
     <div class="buyRight">
       <div class="buyTitle">支付方式</div>
-      
       <button class="custom-btn" onclick="toggleMoney()">💳 自定义金额</button>
-      
       <div class="money-box" id="moneyBox">
         <input type="number" class="money-input" id="payMoney" placeholder="请输入支付金额">
       </div>
-      
       <button class="pay-wx" onclick="payWechat()">💸 微信支付</button>
       <button class="pay-zfb" onclick="payAlipay()">💰 支付宝支付</button>
     </div>
   </div>
 </div>
 
-<!-- 游戏目录 -->
 <div class="menu-modal" id="gameMenuModal" onclick="closeGameMenu()">
   <div class="menu-box" onclick="event.stopPropagation()">
     <div class="menu-title">游戏列表</div>
@@ -640,7 +623,6 @@ body {
   </div>
 </div>
 
-<!-- 最新游戏 -->
 <div class="newGameModal" id="newGameModal" onclick="closeNewGameModal()">
   <div class="newGameBox" onclick="event.stopPropagation()">
     <div class="newGameTitle">🔥 最新手游上新</div>
@@ -648,7 +630,6 @@ body {
   </div>
 </div>
 
-<!-- 添加桌面 -->
 <div class="addModal" id="addModal" onclick="closeAddModal()">
   <div class="addBox" onclick="event.stopPropagation()">
     <div class="addTitle">添加到桌面</div>
@@ -667,14 +648,11 @@ body {
 
 <script>
 const wechatId = "khyouxi66";
-
-// 支付链接（你自己改这里）
 const WX_PAY_URL = "#";
 const ZFB_PAY_URL = "#";
 
-// 游戏数据
 const games = [
-  {
+{
   num: 0,
   name: "新斗罗大陆6SSP",
   price: "售价：38元无限内购 | 188元内购+物品后台",
@@ -5532,18 +5510,13 @@ const buyGames = [
 
 let selectedGame = null;
 
-// 切换金额框
 function toggleMoney(){
   const box = document.getElementById('moneyBox');
   box.style.display = box.style.display === 'block' ? 'none' : 'block';
 }
 
-// 支付
 function payWechat(){
-  if(!selectedGame){
-    alert("请先选择左侧游戏");
-    return;
-  }
+  if(!selectedGame){ alert("请先选择左侧游戏"); return; }
   const money = document.getElementById('payMoney').value.trim();
   let url = WX_PAY_URL;
   if(money) url += "?money=" + money;
@@ -5551,36 +5524,22 @@ function payWechat(){
 }
 
 function payAlipay(){
-  if(!selectedGame){
-    alert("请先选择左侧游戏");
-    return;
-  }
+  if(!selectedGame){ alert("请先选择左侧游戏"); return; }
   const money = document.getElementById('payMoney').value.trim();
   let url = ZFB_PAY_URL;
   if(money) url += "?money=" + money;
   window.open(url, '_blank');
 }
 
-// 购买弹窗
-function openBuyModal(){
-  document.getElementById('buyModal').classList.add('show');
-  renderBuy();
-}
-function closeBuyModal(){
-  document.getElementById('buyModal').classList.remove('show');
-}
+function openBuyModal(){ document.getElementById('buyModal').classList.add('show'); renderBuy(); }
+function closeBuyModal(){ document.getElementById('buyModal').classList.remove('show'); }
 
 function renderBuy(keyword=''){
   const list = document.getElementById('buyList');
   list.innerHTML = '';
   buyGames.forEach((g,i)=>{
     if(g.name.includes(keyword)){
-      list.innerHTML += `
-        <div class="buyItem" onclick="chooseGame(${i})">
-          ${g.name}
-          <div class="buyPrice">${g.price}</div>
-        </div>
-      `;
+      list.innerHTML += `<div class="buyItem" onclick="chooseGame(${i})">${g.name}<div class="buyPrice">${g.price}</div></div>`;
     }
   });
 }
@@ -5591,42 +5550,35 @@ function chooseGame(idx){
 }
 
 function searchBuyGame(){
-  const key = document.getElementById('buySearch').value.trim();
-  renderBuy(key);
+  renderBuy(document.getElementById('buySearch').value.trim());
 }
 
-// 最新游戏
 function openNewGameModal(){
   document.getElementById('newGameModal').classList.add('show');
-  renderNew();
+  renderNewGameList();
 }
 function closeNewGameModal(){
   document.getElementById('newGameModal').classList.remove('show');
 }
+
 function renderNewGameList(){
   const list = document.getElementById('newGameList');
   list.innerHTML = '';
   newGames.forEach(g=>{
-    // 重点就是这一行！！
     const realIndex = games.findIndex(item => item.num === g.num);
     list.innerHTML += `<div class="newGameItem" onclick="goToGame(${realIndex})">${g.name}<div class="time">${g.time}</div></div>`;
   });
 }
-// 根据你写的数字，自动匹配游戏下标
-function getGameIdxByNum(num){
-  let item = games.find(g => g.num === num);
-  if(!item) return 0;
-  return games.indexOf(item);
-}
-// 游戏目录
+
 function openGameMenu(){
   document.getElementById('gameMenuModal').classList.add('show');
-  renderMenu();
+  renderGameMenu();
 }
 function closeGameMenu(){
   document.getElementById('gameMenuModal').classList.remove('show');
 }
-function renderMenu(key=''){
+
+function renderGameMenu(key=''){
   const list = document.getElementById('gameMenuList');
   list.innerHTML = '';
   games.forEach((g,i)=>{
@@ -5635,33 +5587,31 @@ function renderMenu(key=''){
     }
   });
 }
+
 function searchGame(){
-  const key = document.getElementById('gameSearch').value.trim();
-  renderMenu(key);
+  renderGameMenu(document.getElementById('gameSearch').value.trim());
 }
-function goToGame(i){
+
+function goToGame(index){
   closeGameMenu();
-  document.querySelectorAll('.game-card')[i].scrollIntoView({behavior:'smooth'});
+  closeNewGameModal();
+  
+  setTimeout(()=>{
+    const card = document.querySelectorAll('.game-card')[index];
+    if(card){
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 50);
 }
 
-// 桌面
-function showAddTip(){
-  document.getElementById('addModal').classList.add('show');
-}
-function closeAddModal(){
-  document.getElementById('addModal').classList.remove('show');
-}
+function showAddTip(){ document.getElementById('addModal').classList.add('show'); }
+function closeAddModal(){ document.getElementById('addModal').classList.remove('show'); }
 
-// 返回顶部
-function goToTop(){
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+function goToTop(){ window.scrollTo({ top:0, behavior:'smooth' }); }
 window.onscroll = function(){
-  const btn = document.getElementById('backTop');
-  btn.classList.toggle('show', window.scrollY>200);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 200);
 }
 
-// 复制
 function copyWechat(){
   navigator.clipboard.writeText(wechatId).then(()=>alert("微信复制成功！")).catch(()=>alert("复制失败"));
 }
@@ -5669,7 +5619,6 @@ function copyLink(t){
   navigator.clipboard.writeText(t).then(()=>alert("链接复制成功！")).catch(()=>alert("复制失败"));
 }
 
-// 图片
 function openImg(s){
   document.getElementById('bigImg').src = s;
   document.getElementById('imgModal').classList.add('show');
@@ -5678,12 +5627,13 @@ function closeImg(){
   document.getElementById('imgModal').classList.remove('show');
 }
 
-// 渲染游戏
+// 渲染游戏卡片（已修复ID）
 const container = document.getElementById('gameList');
 games.forEach((g, i)=>{
   let card = document.createElement('div');
   card.className = 'game-card';
-  card.id = 'gameCard' + i;// 给每个卡片加唯一ID（关键修复）
+  card.id = 'gameCard' + i;
+
   let html = `<div class="game-name">${g.name}</div>`;
   if(g.price) html += `<div class="game-price">${g.price}</div>`;
 
@@ -5719,19 +5669,13 @@ games.forEach((g, i)=>{
   if(g.active && g.active!='#'){
     html+=`<div class="btn-row"><button class="btn-download active" onclick="window.open('${g.active}','_blank')">激活后台</button><button class="btn-copy" onclick="copyLink('${g.active}')">复制</button></div>`;
   }
-  // 查看套餐（packageUrl）
-  if(g.packageUrl && g.packageUrl!='#'){
-  html+=`<div class="btn-row">
-    <button class="btn-download package" onclick="window.open('${g.packageUrl}','_blank')">查看套餐</button>
-    <button class="btn-copy" onclick="copyLink('${g.packageUrl}')">复制</button>
-  </div>`;
-  }
   if(g.img){
     html+=`<div class="btn-row"><button class="btn-download img" onclick="openImg('${g.img}')">游戏截图</button></div>`;
   }
   if(g.info){
     html+=`<div class="game-info">${g.info}</div>`;
   }
+
   card.innerHTML = html;
   container.appendChild(card);
 });
