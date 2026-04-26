@@ -5686,6 +5686,7 @@ const container = document.getElementById('gameList');
 games.forEach(g=>{
   let card = document.createElement('div');
   card.className = 'game-card';
+  d.id = 'gameCard' + i; // 给每个卡片加唯一ID（关键修复）
   let html = `<div class="game-name">${g.name}</div>`;
   if(g.price) html += `<div class="game-price">${g.price}</div>`;
 
