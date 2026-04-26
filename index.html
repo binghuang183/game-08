@@ -592,11 +592,19 @@ body {
 }
 .roll-text span {
   display: inline-block;
-  animation: scrollMove 12s linear infinite;
+  animation: scrollMove 15s linear infinite;
 }
 @keyframes scrollMove {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
+}
+/* 只改颜色，尺寸100%跟随btn-download，绝对一模一样 */
+.packageUrl {
+    background: #ff4757 !important; /* 查看套餐专属红色 */
+    color: #fff !important;
+}
+.packageUrl:hover {
+    background: #e83445 !important;
 }
 </style>
 </head>
@@ -5746,6 +5754,9 @@ games.forEach((g, i)=>{
   }
   if(g.active && g.active!='#'){
     html+=`<div class="btn-row"><button class="btn-download active" onclick="window.open('${g.active}','_blank')">激活后台</button><button class="btn-copy" onclick="copyLink('${g.active}')">复制</button></div>`;
+  }
+  if(g.packageUrl){
+    html+=`<div class="btn-row"><button class="btn-download packageUrl" onclick="window.open('${g.packageUrl}','_blank')">查看套餐</button><button class="btn-copy" onclick="copyLink('${g.packageUrl}')">复制</button></div>`;
   }
   if(g.img){
     html+=`<div class="btn-row"><button class="btn-download img" onclick="openImg('${g.img}')">游戏截图</button></div>`;
