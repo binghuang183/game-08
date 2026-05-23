@@ -704,6 +704,37 @@ body {
 .new-search-input::placeholder{
   color: #777;
 }
+/* 搜索无结果提示 */
+.empty-tip {
+  padding: 12px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+}
+
+/* 悬浮客服按钮 */
+.float-service {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #ff3c6e, #ff6b35);
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(255,60,110,0.3);
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.float-service:hover {
+  transform: scale(1.1);
+}
 </style>
 </head>
 
@@ -711,6 +742,9 @@ body {
 
 <button class="addHome-btn" onclick="showAddTip()">📲 添加桌面</button>
 <button class="backTop" onclick="goToTop()" id="backTop">🚀</button>
+
+<!-- 悬浮客服 -->
+<button class="float-service" onclick="copyWechat()" title="点击复制客服微信">💬</button>
 
 <h1 class="page-title">凯皇游戏</h1>
 
@@ -770,14 +804,14 @@ body {
 
 <div class="newGameModal" id="newGameModal" onclick="closeNewGameModal()">
   <div class="newGameBox" onclick="event.stopPropagation()">
-    <div class="newGameTitle">🔥 一码全激活|稳定更新</div>
-    <!-- 套餐内游戏搜索框 -->
+    <div class="newGameTitle">🔥 最新手游上新</div>
+    <!-- 上新游戏搜索框 -->
 <div class="new-search-wrap">
   <input
     type="text"
     class="new-search-input"
     id="newGameSearch"
-    placeholder="🔍 搜索套餐内游戏..."
+    placeholder="🔍 搜索上新游戏..."
     oninput="searchNewGame()"
   >
 </div>
@@ -6441,6 +6475,90 @@ function renderNewGameList(keyword = '') {
       list.innerHTML += `<div class="newGameItem" onclick="goToGame(${realIndex})">${g.name}<div class="time">${g.time}</div></div>`;
     }
   });
+}
+// ====================== 悬浮客服复制微信 ======================
+function copyWechat() {
+  const wechatId = "khyouxi66"; // 这里可以改成你自己的微信
+  navigator.clipboard.writeText(wechatId)
+    .then(() => alert("微信复制成功！"))
+    .catch(() => alert("复制失败，请手动复制"));
+}
+
+// ====================== 首页搜索下拉（无结果提示） ======================
+function showSearchList() {
+  const keyword = document.getElementById('homeSearch').value.trim().toLowerCase();
+  const dropdown = document.getElementById('searchDropdown');
+  if (!keyword) {
+    dropdown.classList.remove('show');
+    dropdown.innerHTML = '';
+    return;
+  }
+  let html = '';
+  let hasMatch = false;
+  games.forEach((g, i) => {
+    if (g.name.toLowerCase().includes(keyword)) {
+      hasMatch = true;
+      html += `<div class="search-dropdown-item" onclick="goToGame(${i})">${g.name}</div>`;
+    }
+  });
+  if (!hasMatch) {
+    html = '<div class="empty-tip">未找到相关游戏，请更换关键词重试</div>';
+  }
+  dropdown.innerHTML = html;
+  dropdown.classList.add('show');
+}
+
+// ====================== 388礼包弹窗搜索（无结果提示） ======================
+function searchNewGame() {
+  const keyword = document.getElementById('newGameSearch').value.trim().toLowerCase();
+  renderNewGameList(keyword);
+}
+function renderNewGameList(keyword = '') {
+  const list = document.getElementById('newGameList');
+  list.innerHTML = '';
+  let hasMatch = false;
+  newGames.forEach(g => {
+    if (g.name.toLowerCase().includes(keyword)) {
+      hasMatch = true;
+      const realIndex = games.findIndex(item => item.num === g.num);
+      list.innerHTML += `<div class="newGameItem" onclick="goToGame(${realIndex})">${g.name}<div class="time">${g.time}</div></div>`;
+    }
+  });
+  if (!hasMatch) {
+    list.innerHTML = '<div class="empty-tip">未找到相关游戏，请更换关键词重试</div>';
+  }
+}
+
+// ====================== 游戏目录搜索（无结果提示） ======================
+function renderGameMenu(key = '') {
+  const list = document.getElementById('gameMenuList');
+  list.innerHTML = '';
+  let hasMatch = false;
+  games.forEach((g, i) => {
+    if (g.name.toLowerCase().includes(key)) {
+      hasMatch = true;
+      list.innerHTML += `<div class="menu-item" onclick="goToGame(${i})">${g.name}</div>`;
+    }
+  });
+  if (!hasMatch) {
+    list.innerHTML = '<div class="empty-tip">未找到相关游戏，请更换关键词重试</div>';
+  }
+}
+
+// ====================== 购买页面搜索（无结果提示） ======================
+function renderBuy(keyword = '') {
+  const list = document.getElementById('buyList');
+  list.innerHTML = '';
+  let hasMatch = false;
+  buyGames.forEach((g, i) => {
+    if (g.name.toLowerCase().includes(keyword)) {
+      hasMatch = true;
+      list.innerHTML += `<div class="buyItem" onclick="chooseGame(${i})">${g.name}<div class="buyPrice">${g.price}</div></div>`;
+    }
+  });
+  if (!hasMatch) {
+    list.innerHTML = '<div class="empty-tip">未找到相关游戏，请更换关键词重试</div>';
+  }
 }
 </script>
 </body>
