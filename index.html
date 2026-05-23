@@ -680,6 +680,30 @@ body {
   background: #f0f7ff;
   color: #0066ff;
 }
+/* 上新游戏弹窗搜索框 */
+.new-search-wrap{
+  margin-bottom: 15px;
+}
+.new-search-input{
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border-radius: 12px;
+  outline: none;
+  background: #fff;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff,#fff),
+  linear-gradient(135deg,#ff3c6e,#ff6b35);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: all 0.3s ease;
+}
+.new-search-input:focus{
+  box-shadow: 0 0 12px rgba(255,60,110,0.3);
+}
+.new-search-input::placeholder{
+  color: #777;
+}
 </style>
 </head>
 
@@ -746,7 +770,17 @@ body {
 
 <div class="newGameModal" id="newGameModal" onclick="closeNewGameModal()">
   <div class="newGameBox" onclick="event.stopPropagation()">
-    <div class="newGameTitle">🔥 最新手游上新</div>
+    <div class="newGameTitle">🔥 一码全激活|稳定更新</div>
+    <!-- 套餐内游戏搜索框 -->
+<div class="new-search-wrap">
+  <input
+    type="text"
+    class="new-search-input"
+    id="newGameSearch"
+    placeholder="🔍 搜索上新游戏..."
+    oninput="searchNewGame()"
+  >
+</div>
     <div id="newGameList"></div>
   </div>
 </div>
@@ -6390,6 +6424,24 @@ document.addEventListener('click', function (e) {
     dropdown.classList.remove('show');
   }
 });
+// 最新游戏弹窗搜索
+function searchNewGame() {
+  const keyword = document.getElementById('newGameSearch').value.trim().toLowerCase();
+  renderNewGameList(keyword);
+}
+
+// 增强版渲染（支持搜索）
+function renderNewGameList(keyword = '') {
+  const list = document.getElementById('newGameList');
+  list.innerHTML = '';
+  newGames.forEach(g => {
+    const gameName = g.name.toLowerCase();
+    if (gameName.includes(keyword)) {
+      const realIndex = games.findIndex(item => item.num === g.num);
+      list.innerHTML += `<div class="newGameItem" onclick="goToGame(${realIndex})">${g.name}<div class="time">${g.time}</div></div>`;
+    }
+  });
+}
 </script>
 </body>
 </html>
