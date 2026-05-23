@@ -606,6 +606,79 @@ body {
 .packageUrl:hover {
     background: #e83445 !important;
 }
+/* 首页搜索框 + 按钮 + 下拉 */
+.home-search-wrap{
+  max-width: 520px;
+  margin: 0 auto 22px;
+  position: relative;
+}
+.home-search-inner{
+  display: flex;
+  gap: 8px;
+}
+.home-search-input{
+  flex: 1;
+  padding: 16px 18px;
+  font-size: 16px;
+  border-radius: 14px;
+  outline: none;
+  background: #fff;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff,#fff),
+  linear-gradient(135deg,#0066ff,#3a86ff,#00a0ff);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition: all 0.3s ease;
+}
+.home-search-input:focus{
+  box-shadow: 0 0 14px rgba(0,102,255,0.3);
+  transform: scale(1.01);
+}
+.home-search-input::placeholder{
+  color: #777;
+}
+.home-search-btn{
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: linear-gradient(90deg,#0066ff,#00a0ff);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.home-search-btn:hover{
+  transform: translateY(-2px);
+}
+
+/* 搜索下拉列表 */
+.search-dropdown{
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 9999;
+  display: none;
+}
+.search-dropdown.show{
+  display: block;
+}
+.search-dropdown-item{
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #222;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+.search-dropdown-item:hover{
+  background: #f0f7ff;
+  color: #0066ff;
+}
 </style>
 </head>
 
@@ -615,6 +688,21 @@ body {
 <button class="backTop" onclick="goToTop()" id="backTop">🚀</button>
 
 <h1 class="page-title">凯皇游戏</h1>
+
+<!-- 首页搜索框 + 按钮 + 下拉 -->
+<div class="home-search-wrap">
+  <div class="home-search-inner">
+    <input
+      type="text"
+      class="home-search-input"
+      id="homeSearch"
+      placeholder="🔍 输入游戏名称..."
+      oninput="showSearchList()"
+    >
+    <button class="home-search-btn" onclick="doSearch()">搜索</button>
+  </div>
+  <div class="search-dropdown" id="searchDropdown"></div>
+</div>
 
 <div class="btn-group">
   <button class="btn-item btn-game" onclick="openGameMenu()">🎮 游戏目录 | 搜索游戏</button>
@@ -6254,6 +6342,52 @@ games.forEach((g, i)=>{
 
   card.innerHTML = html;
   container.appendChild(card);
+});
+// 搜索增强版：下拉列表 + 点击定位
+function showSearchList() {
+  const keyword = document.getElementById('homeSearch').value.trim().toLowerCase();
+  const dropdown = document.getElementById('searchDropdown');
+  
+  if (!keyword) {
+    dropdown.classList.remove('show');
+    dropdown.innerHTML = '';
+    return;
+  }
+
+  let html = '';
+  games.forEach((g, i) => {
+    const name = g.name.toLowerCase();
+    if (name.includes(keyword)) {
+      html += `<div class="search-dropdown-item" onclick="goToGame(${i})">${g.name}</div>`;
+    }
+  });
+
+  dropdown.innerHTML = html;
+  dropdown.classList.add('show');
+}
+
+// 点击搜索按钮
+function doSearch() {
+  showSearchList();
+  const keyword = document.getElementById('homeSearch').value.trim().toLowerCase();
+  if (!keyword) return;
+  
+  for (let i = 0; i < games.length; i++) {
+    const name = games[i].name.toLowerCase();
+    if (name.includes(keyword)) {
+      goToGame(i);
+      break;
+    }
+  }
+}
+
+// 点击空白关闭下拉
+document.addEventListener('click', function (e) {
+  const wrap = document.querySelector('.home-search-wrap');
+  const dropdown = document.getElementById('searchDropdown');
+  if (!wrap.contains(e.target)) {
+    dropdown.classList.remove('show');
+  }
 });
 </script>
 </body>
