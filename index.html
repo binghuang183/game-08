@@ -735,6 +735,75 @@ body {
 .float-service:hover {
   transform: scale(1.1);
 }
+/* 会员权益弹窗样式 */
+.vipModal{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;
+  z-index:10000;padding:20px;
+}
+.vipModal.show{display:flex;}
+.vipBox{
+  background:#fff;border-radius:16px;
+  padding: 25px 30px; /* 左右padding加大，更宽松 */
+  max-width:450px; /* 弹窗加宽一点，适配文字 */
+  width:100%;
+  margin: 0 auto; /* 弹窗本身居中 */
+}
+.vipTitle{
+  font-size:20px;font-weight:bold;text-align:center;
+  margin-bottom:15px;color:#ff3c6e;
+}
+/* 重点修改：让会员权益文字工整居中 */
+.vipItem {
+  font-size: 15px;
+  color: #333;
+  padding: 8px 0;
+  line-height: 1.8; /* 增大行高，避免挤在一起 */
+  text-align: center; /* 整体文字居中 */
+  /* 关键：让对勾+文字在一行显示，不换行 */
+  white-space: nowrap;
+  /* 防止内容超出弹窗 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 强制占满宽度，确保居中 */
+  width: 100%;
+  margin: 0 auto;
+}
+/* 售后保障 — 居中工整版 */
+.service-desc {
+  max-width: 520px;
+  margin: 40px auto 20px;
+  padding: 18px 22px;
+  background: #f8f9ff;
+  border-radius: 14px;
+  border: 1px solid #e0e8ff;
+  text-align: center;
+}
+.service-desc h4 {
+  margin-bottom: 14px;
+  font-size: 16px;
+  color: #222;
+}
+.service-item {
+  font-size: 14px;
+  padding: 6px 0;
+  color: #333;
+  line-height: 1.6;
+  display: block;
+  text-align: center;
+}
+.vipBtn{
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,#ff3c6e,#ff6b35);
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:16px;
+}
 </style>
 </head>
 
@@ -765,7 +834,7 @@ body {
 
 <div class="btn-group">
   <button class="btn-item btn-game" onclick="openGameMenu()">🎮 游戏目录 | 搜索游戏</button>
-  <button class="btn-item btn-new" onclick="openNewGameModal()">🔥 388元游戏会员大礼包（一码通玩）</button>
+  <button class="btn-item btn-new" onclick="openVipTip()">🔥 388元游戏会员大礼包（一码通玩）</button>
   <button class="btn-item btn-service" onclick="copyWechat()">💬 复制微信 | 加客服开通后台</button>
   <button class="btn-item btn-buy" onclick="openBuyModal()" style="display:none">💰 立即购买 | 联系客服</button>
 
@@ -794,6 +863,18 @@ body {
   </div>
 </div>
 
+<!-- 会员权益弹窗 -->
+<div class="vipModal" id="vipModal" onclick="closeVipModal()">
+  <div class="vipBox" onclick="event.stopPropagation()">
+    <div class="vipTitle">游戏套餐权益</div>
+    <div class="vipItem">✅ 套餐内所有游戏 一码激活畅玩</div>
+    <div class="vipItem">✅ 不定期更新游戏 持续上新维护</div>
+    <div class="vipItem">✅ 支持安卓和苹果 双系统都可玩</div>
+    <div class="vipItem">✅ 后台和内购权限 需要啥就发啥</div>
+    <button class="vipBtn" onclick="confirmEnterVip()">了解完毕，进入礼包列表</button>
+  </div>
+</div>
+
 <div class="menu-modal" id="gameMenuModal" onclick="closeGameMenu()">
   <div class="menu-box" onclick="event.stopPropagation()">
     <div class="menu-title">游戏列表</div>
@@ -804,14 +885,14 @@ body {
 
 <div class="newGameModal" id="newGameModal" onclick="closeNewGameModal()">
   <div class="newGameBox" onclick="event.stopPropagation()">
-    <div class="newGameTitle">🔥 最新手游上新</div>
+    <div class="newGameTitle">🔥一码激活|稳定更新</div>
     <!-- 上新游戏搜索框 -->
 <div class="new-search-wrap">
   <input
     type="text"
     class="new-search-input"
     id="newGameSearch"
-    placeholder="🔍 搜索上新游戏..."
+    placeholder="🔍 搜索套餐内游戏..."
     oninput="searchNewGame()"
   >
 </div>
@@ -833,6 +914,15 @@ body {
 <div class="container" id="gameList"></div>
 <div class="img-modal" id="imgModal" onclick="closeImg()">
   <img src="" id="bigImg" alt="游戏截图">
+</div>
+
+<!-- 售后保障说明 -->
+<div class="service-desc">
+  <h4>售后保障服务</h4>
+  <div class="service-item">✅ 全天在线客服　问题快速响应</div>
+  <div class="service-item">✅ 游戏更新维护　稳定长期运营</div>
+  <div class="service-item">✅ 全程售后指导　包教包会使用</div>
+  <div class="service-item">✅ 故障及时修复　保障正常游玩</div>
 </div>
 
 <script>
@@ -6559,6 +6649,17 @@ function renderBuy(keyword = '') {
   if (!hasMatch) {
     list.innerHTML = '<div class="empty-tip">未找到相关游戏，请更换关键词重试</div>';
   }
+}
+// 7.会员权益弹窗
+function openVipTip(){
+  document.getElementById('vipModal').classList.add('show');
+}
+function closeVipModal(){
+  document.getElementById('vipModal').classList.remove('show');
+}
+function confirmEnterVip(){
+  closeVipModal();
+  openNewGameModal();
 }
 </script>
 </body>
